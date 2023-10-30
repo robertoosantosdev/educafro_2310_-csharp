@@ -132,7 +132,6 @@ Agora você possui uma conta na maior plataforma de desenvolvimento do mundo!
 ### 1. Introdução à Programação e Ambiente de Desenvolvimento
 #### 1.2. Visual Studio Code
 #### 1.2.1. Instalação
-#### 1.2.2. Criando um novo projeto
 
 ---
 <style scoped>section { justify-content: start; }</style>
@@ -160,6 +159,11 @@ Link: https://code.visualstudio.com/download
 2. Clique duas vezes no arquivo baixado e siga as instruções para instalação.
 
 3. **Pronto**, você tem uma das ferramentas mais populares de programação, disponível para utilização.
+
+---
+### 1. Introdução à Programação e Ambiente de Desenvolvimento
+#### 1.2. Visual Studio Code
+#### 1.2.1. Configuração
 
 ---
 <style scoped>section { justify-content: start; }</style>
@@ -192,5 +196,132 @@ Link: https://dotnet.microsoft.com/pt-br/download
 
 ##### 1.2.2 Configuração
 
-#### Parabéns! 👏
+#### Parabéns! 🎉🎉
 Agora você está pronto para começar a desenvolver em C#!
+
+---
+### 1. Conceitos Básicos
+#### 1.3. O que é programação?
+
+---
+#### 1.3. O que é programação?
+
+> Programação é o processo de escrita, teste e manutenção de um programa de computador. O programa é escrito em uma linguagem de programação, embora seja possível, com alguma dificuldade, o escrever diretamente em linguagem de máquina. Diferentes partes de um programa podem ser escritas em diferentes linguagens.
+**Wikipedia*
+
+A principal linguagem que utilizaremos nesse curso será C#
+
+---
+
+#### 1.3. O que é programação?
+
+Para facilitar o entendimento, imagine um programa de computador como um conjunto de funções que permite que as pessoas façam algo sem entender detalhadamente como um computador funciona.
+
+##### Vamos praticar! ✏️
+
+Numa folha de papel escreva as funções que você imagina que um computador e/ou celular deve fazer para mostrar as últimas publicações do Instagram para você.
+
+---
+
+#### 1.3. O que é programação?
+
+##### Muito bem! ✅
+
+Apesar de não saber exatamente todas as funções que o Instagram realiza, essa é a minha lista:
+
+- Solicitar usuário e senha
+- Validar usuário e senha
+- Consultar notificações
+- Consultar últimas publicações das pessoas que sigo
+- Filtrar publicações que eu já vi
+- Consultar quantidade de curtidas de cada publicação
+- Consultar quantidade de comentários de cada publicação
+
+---
+
+#### 1.3. O que é programação?
+
+- Consultar meu perfil
+- Consultar publicidades que são relevantes para mim
+- Consultar perfis que poderia começar a seguir
+- Exibir publicações
+- Exibir botões em cada publicação
+- Exibir menu de navegação
+- Exibir texto da publicação
+- Consultar últimos *stories* de pessoas que eu sigo
+- Ordenar *stories* não vistos primeiro
+...
+
+---
+
+#### 1.3. O que é programação?
+
+Como eu disse, eu não tenho certeza de todas as funções que o Instagram realiza para me mostrar a lista de publicações, mas espero que a sua lista esteja parecida com a minha.
+
+Cada item dessa lista foi desenvolvido através de programação!
+
+---
+
+#### 1.4. Funções
+
+Como falamos anteriormente, uma função realizar uma tarefa para uma pessoa no computador.
+
+##### Vamos praticar! ✏️
+
+Para ajudar a entender esse conceito, vamos pensar na seguinte atividade.
+
+Numa folha de papel anote o passo-a-passo que eu devo seguir para fazer um sanduíche de mortadela com requeijão.
+
+---
+
+#### 1.4. Funções
+
+##### Muito bem! ✅
+
+Agora, vamos imaginar que eu sou um computador. E você escreveu as seguintes instruções:
+
+...
+4. Pegue o requeijão
+5. Passe o requeijão no pão
+...
+
+Enquanto uma pessoa poderia entender perfeitamente o que fazer, um computador poderia entender que ele deve pegar o pote de requeijão e passar o pote no pão.
+
+Nada bom, não é mesmo?
+
+---
+
+#### 1.4. Funções
+
+Esse vídeo exemplifica um pouco da dificuldade programar e do quanto é importante ser específico.
+
+
+https://www.youtube.com/watch?v=pdhqwbUWf4U
+
+
+
+---
+
+#### 1.4. Funções
+
+##### 💡 Dicas!
+
+1. Teste cada uma das suas funções.
+2. Tenha funções com finalidades específicas.
+
+
+---
+
+#### 1.4. O que é C#?
+
+> O C# (pronuncia-se "C Sharp") é uma linguagem de programação moderna, orientada a objeto e fortemente tipada. O C# permite que os desenvolvedores criem muitos tipos de aplicativos seguros e robustos que são executados no .NET.
+**Microsoft MSDN*
+
+---
+
+#### 1.5. O que é .Net?
+
+> O .NET é uma plataforma de desenvolvedor de software livre, criada pela Microsoft, para criar muitos tipos diferentes de aplicativos.
+**Microsoft MSDN*
+
+---
