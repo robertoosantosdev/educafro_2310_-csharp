@@ -256,4 +256,4 @@ Vale apena relembrar das aulas de Português. Todo verbo transitivo precisa de u
 > Quem **empresta**, empresta algo para alguém
 > Quem **reserva**, reserva alguma coisa
 
-Ou seja, se você estiver escrevendo essas funções é melhor passar o objeto como parâmetro. Assim, seu programa de computador vai estar pronto para emprestar **dinheiro**, mas no futuro também pode emprestar um **lápis** ou um **caderno**.
+Ou seja, se você estiver escrevendo essas funções é melhor passar o objeto como parâmetro. Assim, seu programa de computador vai estar pronto para emprestar **lápis**, mas no futuro também pode emprestar um **caderno** ou uma **caneta**.
