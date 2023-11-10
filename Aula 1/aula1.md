@@ -3,16 +3,28 @@ marp: true
 footer: 'out - 2023 - Educafro Tech - C# - por Roberto de Oliveira Santos'
 ---
 <style>
+section {
+    justify-content: start;
+}
+
 img[alt$="<"] {
     float: left;
     margin-right: 2em;
     }
+
+img[alt$="center"] {
+    display: block;
+    margin: 0 auto;
+    }
 </style>
+
+<style scoped>section { justify-content: center; }</style>
+
 # Educafro Tech
 ## Curso C# - Do Básico ao MVC
 ---
 # Agenda
-1. Introdução à Programação e Ambiente de Desenvolvimento
+1. **Introdução à Programação e Ambiente de Desenvolvimento**
 2. Fundamentos da Programação em C#
 3. Programação Orientada a Objetos (POO)
 4. Desenvolvimento Web com ASP.NET MVC
@@ -23,14 +35,12 @@ img[alt$="<"] {
 9. Projetos e Aplicações Futuras
 
 ---
-### 1. Introdução à Programação e Ambiente de Desenvolvimento
+<style scoped>section { justify-content: center; }</style>
 
----
 ### 1. Introdução à Programação e Ambiente de Desenvolvimento
 #### Quem sou eu?
 
 ---
-<style scoped>section { justify-content: start; }</style>
 
 #### Quem sou eu?
 
@@ -47,6 +57,8 @@ MBA Executivo @ Insper (2021)
 > Linkedin: https://www.linkedin.com/in/robertoosantos/
 
 ---
+<style scoped>section { justify-content: center; }</style>
+
 ### 1. Introdução à Programação e Ambiente de Desenvolvimento
 #### O que é programação?
 
@@ -104,6 +116,12 @@ Apesar de eu não saber exatamente todas as funções que o Instagram realiza, e
 Como eu disse, eu não tenho certeza sobre todas as funções Instagram realiza, mas espero que a sua lista esteja parecida com a minha.
 
 Cada item dessa lista foi desenvolvido através de programação!
+
+---
+<style scoped>section { justify-content: center; }</style>
+
+### 1. Introdução à Programação e Ambiente de Desenvolvimento
+#### Funções
 
 ---
 
@@ -166,12 +184,12 @@ Outro ponto interessante. Vamos pensar nessas 2 funções:
 > Pegue uma fatia de queijo
 
 
-Um computador ou smartphone não tem braços nem mãos. 
+Um computador ou smartphone não tem braços. 
 Mas vamos supor que você conseguiu construir um braço mecânico.
 
-![image w:200px](../assets//images/imagem_8_braco_robo.png)
+![image w:200px center](../assets//images/imagem_8_braco_robo.png)
 
-Imagem por <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> em <a href="https://icons8.com/illustrations">Ouch!</a>
+<font size="5">Imagem por <a href="https://icons8.com/illustrations/author/zD2oqC8lLBBA">Icons 8</a> em <a href="https://icons8.com/illustrations">Ouch!</a></font>
 
 
 ---
@@ -192,164 +210,50 @@ Ex.:
 
 #### Funções
 
-Ufa! Se tudo deu certo, o braço do robô deveria estar com uma fatia de mortadela na mão
+Ufa! Se tudo deu certo, o braço do robô deveria estar com uma fatia de mortadela na mão.
+
+Porém, agora você você quer que o computador pegue uma fatia de queijo.
+Seria muito ruim ter que escrever de novo todas as funções que o braço deve executar simplesmente trocando a **mortadela** por **queijo**.
 
 ---
 
+#### Funções
 
-<style scoped>section { justify-content: start; }</style>
+Por sorte, você não precisa fazer isso. Um dos princípios da programação é:
 
-### 1. Introdução à Programação e Ambiente de Desenvolvimento
-#### GitHub
-> A plataforma de desenvolvedores baseada em IA para criar, dimensionar e fornecer software seguro.
+> DRY: Do inglês, **D**on't **R**epeat **Y**ourself.
 
-Link: https://github.com/
+Ou seja, **Não Se Repita!**
 
----
-### 1. Introdução à Programação e Ambiente de Desenvolvimento
-##### Criando sua conta
-1. Clique em ***Sign Up*** no canto superior direito
-![Botões de acesso ao Github](../assets/images/imagem_1_sign_up_github.png "Botão Sign Up")
+Então, você pode criar funções personalizadas.
 
----
-<style scoped>section { justify-content: start; }</style>
+Assim, você pode fazer criar uma função com o nome "Pegar uma fatia" com todas as instruções que o braço mecânico deve fazer.
 
-##### Criando sua conta
+E a partir desse ponto, o computador vai conseguir executar as duas funções:
 
-2. Será solicitado seu **e-mail** e a criação de uma **senha**.
-> Se você não tiver um e-mail, você pode criar um em: https://gmail.com
-3. Será solicitada a criação de um **nome de usuário**.
-> Futuros contratantes verão seu nome de usuário. Sugiro utilizar algo similar ao seu nome. Ex.: rafa-silva-dev, devmariasouza, anasilva-dev
-4. Se você quer notícias sobre o github por e-mail responda ***y*** para **sim**, ou ***n*** para **não**.
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Criando sua conta
-
-5. Ao final, você terá que resolver um desafio para confirmar que você é um usuário e não uma máquina. Ex.:
-![Desafio para verificar conta no Github](../assets/images/imagem_2_verify_github.png "Verificar conta")
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Criando sua conta
-
-6. Clique em **Create account** para criar sua conta.
-7. Um código com 8 números vai ser enviado para seu **e-mail**. Acesse seu e-mail numa nova aba ou janela e digite nessa tela o **código enviado por e-mail**.
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Criando sua conta
-
-8. Agora você deve configurar sua conta.
-Recomendo que você selecione:
-* ***Just me*** (apenas eu)
-* ***Student*** (estudante)
-![w:800px Configuração da conta no Github](../assets/images/imagem_3_configuracao_github.png "Verificar conta")
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Criando sua conta
-
-9. Selecione quais recursos pretende utilizar. Recomendo selecionar somente **'Collaborative coding'** e, no final da página, selecione **Continue**. 
-![width:500px Configuração da conta no Github](../assets/images/imagem_4_funcionalidades_github.png "Verificar conta")
+> Pegue uma fatia de **mortadela**
+> Pegue uma fatia de **queijo**
 
 ---
 
-##### Criando sua conta
-<style scoped>section { justify-content: start; }</style>
+#### Funções
 
-10. Finalmente, serão oferecidos os tipos de conta que você deseja. Selecione ***Free*** (Grátis) e no final da página clique em **Continue for free**.
-![width:500px Configuração da conta no Github](../assets/images/imagem_5_conta_github.png "Verificar conta")
+É importante observar que as duas chamadas da sua função "Pegar uma fatia" só tem uma diferença.
 
----
-<style scoped>section { justify-content: start; }</style>
+Uma pega uma fatia de **mortadela** e a outra de **queijo**
 
-##### Criando sua conta
-
-#### Parabéns! 👏
-Agora você possui uma conta na maior plataforma de desenvolvimento do mundo!
-
----
-### 1. Introdução à Programação e Ambiente de Desenvolvimento
-#### Visual Studio Code
-
----
-<style scoped>section { justify-content: start; }</style>
-
-#### Visual Studio Code
-> Edição de código. Redefinido. Grátis. Construído em open source. Roda em qualquer lugar.
-
-
-Link: https://code.visualstudio.com/download
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Instalação
-1. Selecione a versão desejada. Se o seu computador for 32 ou 64 bits e para qual Sistema Operacional você deseja. (Windows, Linux, MacOS...)
-> No meu caso estou usando o Linux Ubuntu 22.04 64bits
-
-![h:350px Configuração da conta no Github](../assets/images/imagem_6_download_visual_studio.png "Verificar conta")
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Instalação
-2. Clique duas vezes no arquivo baixado e siga as instruções para instalação.
-
-3. **Pronto**, você tem uma das ferramentas mais populares de programação, disponível para utilização.
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Configuração
-
-No lado esquerdo você encontrará as funcionalidades do visual studio.
-
-1. Clique em **Extensões** e pesquise por C#
-2. Instale a extensão com a descrição ```Base language support for C#```.
-
-![h:350px Configuração da conta no Github](../assets/images/imagem_7_extensoes_visual_studio.png "Verificar conta")
-
-
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Configuração
-
-Agora vamos instalar o .Net SDK*
-> Crie. Teste. Implante. O .NET é a estrutura gratuita, de software livre e multiplataforma para compilar aplicativos modernos e serviços de nuvem poderosos.
-
-> \* SDK significa *Software Development Kit*, ou seja, kit para desenvolvimento de software. Esse é um conceito que existe para diversas tecnologias.
-
-Link: https://dotnet.microsoft.com/pt-br/download
-
----
-<style scoped>section { justify-content: start; }</style>
-
-##### Configuração
-
-#### Parabéns! 🎉🎉
-Agora você está pronto para começar a desenvolver em C#!
-
----
----
-
-#### O que é C#?
-
-> O C# (pronuncia-se "C Sharp") é uma linguagem de programação moderna, orientada a objeto e fortemente tipada. O C# permite que os desenvolvedores criem muitos tipos de aplicativos seguros e robustos que são executados no .NET.
-**Microsoft MSDN*
+Nesse caso mortadela e queijo são os **parâmetros** da função.
 
 ---
 
-#### O que é .Net?
+#### Funções
 
-> O .NET é uma plataforma de desenvolvedor de software livre, criada pela Microsoft, para criar muitos tipos diferentes de aplicativos.
-**Microsoft MSDN*
+##### 💡 Dica!
 
----
+Vale apena relembrar das aulas de Português. Todo verbo transitivo precisa de um **objeto**.
+
+> Quem **pega**, pega alguma coisa
+> Quem **empresta**, empresta algo para alguém
+> Quem **reserva**, reserva alguma coisa
+
+Ou seja, se você estiver escrevendo essas funções é melhor passar o objeto como parâmetro. Assim, seu programa de computador vai estar pronto para emprestar **dinheiro**, mas no futuro também pode emprestar um **lápis** ou um **caderno**.
