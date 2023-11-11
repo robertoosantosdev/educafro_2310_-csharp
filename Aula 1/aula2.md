@@ -207,6 +207,6 @@ No lado esquerdo, clique em **New**, para criar um novo repositório.
 
 Agora escolha um nome para o repositório.
 
-![Alt text](image.png)
+![Alt text](imagem_10_nome_repositorio.png)
 
 No meu caso eu escolhi: ```aula-sanduiche-educafro-csharp```
