@@ -22,7 +22,7 @@ img[alt$="center"] {
 
 # Educafro Tech
 ## Curso C# - Do Básico ao MVC
-### Aula 3
+### Aula 4
 ---
 # Agenda
 1. Introdução à Programação e Ambiente de Desenvolvimento
@@ -115,7 +115,7 @@ dotnet add ./Sanduiche.Test/Sanduiche.Test.csproj reference ./Sanduiche/Sanduich
 
 Antes de continuar, confirme que na barra inferior do Visual Studio Code, aparece a informação: "Projects: 2".
 
-![Barra de status informando que existem dois projetos nesse repositório](image.png)
+![Barra de status informando que existem dois projetos nesse repositório](/assets/images/imagem_projetos_carregados.png)
 
 Se não estiver, vai ser necessário fechar e abrir o Visual Studio Code.
 
