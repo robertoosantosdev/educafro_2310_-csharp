@@ -409,3 +409,140 @@ E novamente você deve estar vendo o erro no terminal:
 Crie a função ```PegarFatiaDeMortadela```
 
 ---
+
+#### Mas e o DRY?
+
+Compare as duas funções ```PegarFatiaDeQueijo``` e ```PegarFatiaDeMortadela```.
+
+Elas são praticamente idênticas.
+
+Como falamos, é possível transformar essas duas funções numa única, e através de parâmetros informar o que queremos pegar.
+
+---
+
+
+#### Funções com parâmetros
+
+Mude o nome do teste ```PegarFatiaDeMortadelaTest``` para ```PegarFatiaTest```
+
+Mude a chamada da função ```PegarFatiaDeMortadela``` para:
+
+```c#
+Sanduiche.Program.PegarFatia("mortadela");
+```
+
+Ou seja, ```"mortadela"``` é um parâmetro da função ```PegarFatia```
+
+Ao salvar o arquivo, novamente nossos testes vão dizer:
+
+```console
+'Program' does not contain a definition for 'PegarFatia'
+```
+
+
+---
+
+#### Funções com parâmetros
+
+Observe que agora o teste ```PegarFatiaTest``` espera que a mensagem ```Peguei uma fatia de mortadela.\n``` seja exibida quando o parâmetro for ```"mortadela"```. Mas e quando for ```"queijo"```?
+
+Vamos precisar de mais uma variável ```expected```
+
+```c#
+        var expected2 = "Peguei uma fatia de queijo.\n";
+```
+
+De mais uma chamada da função ```PegarFatia``` mudando o parâmetro para ```"queijo"```
+
+⚠️ Depois do ```Assert``` que faz o primeiro teste.
+
+```c#
+            Sanduiche.Program.PegarFatia("queijo");
+```
+
+---
+
+#### Funções com parâmetros
+
+E por fim, mais um ```Assert``` mas agora para a variável ```expected2``` que acabamos de criar.
+
+```c#
+            Assert.EndsWith(expected2, saida.ToString());
+```
+
+Ao salvar o arquivo, novamente nossos testes vão dizer:
+
+```console
+'Program' does not contain a definition for 'PegarFatia'
+```
+
+---
+
+#### Funções com parâmetros
+
+Vamos mudar a função ```PegarFatiaDeMortadela``` do arquivo **Program.cs**.
+
+Mude o nome para ```PegarFatia```
+
+Agora, para que essa função aceite parâmetros, vamos criar uma variável nela.
+
+```c#
+    public static void PegarFatia(string ingrediente)
+```
+
+Ou seja, ```string ingrediente"``` indicam que a função aceita um parâmetro e seu tipo é string, que significa, texto.
+
+E para usar essa variável, vamos usar uma outra versão da função ```Console.WriteLine```
+
+
+---
+
+#### Funções com parâmetros
+
+
+Se você passar o mouse sobre a função ```Console.WriteLine```, você verá que ela possui +17 *overloads*
+
+![Overloads da função Console.WriteLine](/assets/images/imagem_26_overloads.png)
+
+Isso significa que ela possui 18 formas diferentes de ser utilizada.
+
+
+---
+
+#### Funções com parâmetros
+
+Se você apagar o ```)``` no final dela e digitar ```,```, você verá que na forma 14/18 a sugestão recebe um ```string format```, ou seja, um texto que usa recursos de formatação e um parâmetro que vai ser usado nessa formatação.
+
+![Opção 14/18 com string format](/assets/images/imagem_27_string_format.png)
+
+Para usar essa versão, vamos substituir a palavra ```mortadela``` por ```{0}```, indicando que nesse lugar vai o valor do parâmetro.
+
+E depois da vírgula, vamos colocar nosso parâmetro ```ingrediente```.
+
+
+---
+
+#### Funções com parâmetros
+
+A versão final fica assim:
+
+```c#
+    public static void PegarFatia(string ingrediente)
+    {
+        Console.WriteLine("Peguei uma fatia de {0}.", ingrediente);
+    }
+```
+
+Ou seja, uma única função que consegue pegar uma fatia de qualquer coisa.
+
+Salve o arquivo e veja seus testes executarem novamente, mas agora, com sucesso!
+
+```console
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     3, Skipped:     0, Total:     3, Duration: 4 ms
+```
+
+##### ⚠️ Faça um novo commit
+
+
