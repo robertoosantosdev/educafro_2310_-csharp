@@ -38,7 +38,7 @@ img[alt$="center"] {
 ---
 <style scoped>section { justify-content: center; }</style>
 
-### 1. Introdução à Programação e Ambiente de Desenvolvimento
+### 2. Fundamentos da Programação em C#
 #### Criando uma aplicação .Net em C#
 
 ---
