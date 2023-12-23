@@ -61,7 +61,7 @@ Na função ```PegarFatia```, criamos uma variável ```ingrediente``` para armaz
 
 Antes do nome da variável, definimos seu tipo. Ou seja, uma variável do tipo ```string```, pode armazenar textos!
 
-Mas existem outros tipos de variáveis.
+Mas existem outros tipos de variáveis. Saiba mais em: https://learn.microsoft.com/pt-br/dotnet/csharp/fundamentals/types/
 
 Vamos supor que você queira um sanduíche com três fatias de queijo. Como você faria?
 
