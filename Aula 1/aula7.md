@@ -114,39 +114,6 @@ Ele pode ser algo como:
     }
 ```
 
-Note que o valor da variável preparo é o resultado de uma função. ```string.Format``` é um **método estático** que a classe ```string``` tem. Ele recebe um atributo do tipo ```string``` que contém números entre chaves, ```{0}```, para indicar que aquele lugar tem que ser substituído com o valor da variável que está no próximo parâmetro da função.
-
----
-
-#### Vamos criar um método
-
-Nosso método ```Preparar``` também tem uma diferença do método ```PegarFatia```.
-
-PegarFatia
-```csharp
-public void PegarFatia
-```
-
-Preparar
-```csharp
-public string Preparar
-```
-
-Isso mesmo. O tipo de ```PegarFatia``` é ```void``` ou seja, vazio.
-Já o tipo do método ```Preparar``` é ```string``` ou seja, texto. Isso significa que ```Preparar``` deve retornar um resultado do tipo ```string```.
-
----
-
-#### Vamos criar um método
-
-Isso acontece na linha:
-
-```csharp
-return preparo;
-```
-
-Que retorna a variável que guarda o resultado do ```string.Format```.
-
 ---
 
 #### Vamos usar nossa classe
@@ -188,8 +155,8 @@ Actual:   ···eguei uma fatia de Ingredente.
 
 Isso acontece por que, o método ```PegarFatia``` usa o atributo ```ingrediente``` assim:
 
-```
-Console.WriteLine("Peguei uma fatia de {0}.", ingrediente);
+```csharp
+fatias = fatias + string.Format("Peguei uma fatia de {0}.\n", ingrediente);
 ```
 
 Um objeto do tipo ```string``` sabe que ao ser utilizado assim, deve retornar seu valor.
@@ -202,7 +169,7 @@ string nome = "Roberto";
 
 Vai retornar ```Roberto```
 
-Então vamos informar que no nosso caso, queremos o valor da propriedade ```Nome``` que é do tipo ```string```.
+Então vamos informar que no nosso caso, queremos o valor da propriedade ```Nome``` da classe ```Ingrediente```, que é do tipo ```string```.
 
 
 ---
@@ -212,7 +179,7 @@ Então vamos informar que no nosso caso, queremos o valor da propriedade ```Nome
 Ficando assim:
 
 ```csharp
-Console.WriteLine("Peguei uma fatia de {0}.", ingrediente.Nome);
+fatias = fatias + string.Format("Peguei uma fatia de {0}.\n", ingrediente.Nome);
 ```
 
 Mas ao salvar, os testes informam que:
@@ -275,14 +242,14 @@ Seus testes devem ficar parecidos com:
     [Fact]
     public void PrepararMortadelaTest()
     {
-        var expected = "mortadela quente";
+        string expected = "mortadela quente";
 
-            Ingredente queijo = new Ingredente();
-            queijo.Nome = "mortadela";
+        Ingredente queijo = new Ingredente();
+        queijo.Nome = "mortadela";
 
-            var actual = queijo.Preparar();
+        string actual = queijo.Preparar();
 
-            Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual);
     }
 ```
 
@@ -344,14 +311,14 @@ Experimente trocar no teste ```PrepararQueijoTest``` a classe ```Ingrediente``` 
     [Fact]
     public void PrepararQueijoTest()
     {
-        var expected = "queijo derretido";
+        string expected = "queijo derretido";
 
-            Ingrediente queijo = new Queijo();
-            queijo.Nome = "queijo";
+        Ingrediente queijo = new Queijo();
+        queijo.Nome = "queijo";
 
-            var actual = queijo.Preparar();
+        string actual = queijo.Preparar();
 
-            Assert.Equal(expected, actual);
+        Assert.Equal(expected, actual);
     }
 ```
 
@@ -414,7 +381,7 @@ E na chamada do método ```Preparar``` temos o benefício do **polimorfismo**:
 
 ```csharp
 ...
-var actual = queijo.Preparar();
+string actual = queijo.Preparar();
 ...
 ```
 

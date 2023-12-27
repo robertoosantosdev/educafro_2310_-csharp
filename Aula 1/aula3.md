@@ -502,9 +502,9 @@ Vamos mudar a função ```MainTest``` com o seguinte conteúdo
 
 ```c#
 /// expected é o valor esperado ao executar o programa
-var expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
+string expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
 /// StringWriter tem a função de armazenar a saída do nosso programa
-using (var saida = new StringWriter())
+using (StringWriter saida = new StringWriter())
 {
     /// Aqui definimos que a saída do console será nosso StringWriter
     Console.SetOut(saida);

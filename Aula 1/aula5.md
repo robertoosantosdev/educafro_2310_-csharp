@@ -73,34 +73,48 @@ Você teria que chamar a função ```PegarFatia``` 2 vezes idênticas?
 
 Claro que não!
 
-Para isso vamos usar 2 coisas:
+Para isso vamos usar 3 coisas:
 1. Uma variável para armazenar números
-2. Uma estrutura para fazer uma função mais de uma vez
+2. Uma variável para acumular o retorno das fatias
+3. Uma estrutura para fazer uma função mais de uma vez
 
 Na função ```PegarFatia```, acrescente uma variável do tipo ```int``` com o nome ```quantidade```.
 
 ``` c#
-    public static void PegarFatia(string ingrediente, int quantidade)
+    public static string PegarFatia(string ingrediente, int quantidade)
 ```
 
 ---
 
 #### Vamos falar de variáveis
 
-Ainda na função ```PegarFatia``` vamos envolver a função ```Console.WriteLine``` com a estrutura ```for```.
+Ainda na função ```PegarFatia``` vamos criar uma variável do tipo ```string``` chamada ```fatias```.
+
+Vamos envolver a função ```string.Format``` com a estrutura ```for```.
 
 O ```for``` executa um trecho de código, quantas vezes forem necessárias.
 
 ``` c#
     for (int i = 0; i < quantidade; i++)
         {
-            Console.WriteLine("Peguei uma fatia de {0}.", ingrediente);
+            return string.Format("Peguei uma fatia de {0}.\n", ingrediente);
         }
 ```
+
+Agora vamos substituir o ```return``` por ```fatias = fatias + ``` e, ao final, vamos retornar o a variável ```fatias```.
 
 ---
 
 #### Ixi! Os testes falharam
+
+```csharp
+        for (int i = 0; i < quantidade; i++)
+        {
+            fatias = fatias + string.Format("Peguei uma fatia de {0}.\n", ingrediente.Nome);
+        }
+
+        return fatias;
+```
 
 Como esperado, se você salvou o arquivo, seu terminal deve mostrar o seguinte resultado:
 
@@ -120,7 +134,7 @@ Vamos no arquivo ```ProgramTest.cs``` no nosso projeto de testes.
 Primeiro ponto, agora não esperamos mais que a saída da função seja apenas ```"Peguei uma fatia de queijo.\n"``` mas que essa mensagem seja exibida 2 vezes. Ou seja:
 
 ```csharp
-        var expected2 = "Peguei uma fatia de queijo.\nPeguei uma fatia de queijo.\n";
+        string expectedQueijo = "Peguei uma fatia de queijo.\nPeguei uma fatia de queijo.\n";
 ```
 
 E vamos informar quantas fatias de cada ingrediente queremos. 1 de mortadela e 2 de queijo.
@@ -163,7 +177,7 @@ Para testar uma mensagem de erro, precisamos envolver a chamada da função com 
 
 #### Atualizando nossos testes
 
-Ao invés de usarmos o ```Assert.EndsWith``` que testa se um texto termina com o valor esperado. Vamos usar o ```Assert.Throws<>``` onde dentro do ```<>``` vamos colocar o tipo do erro que esperamos.
+Ao invés de usarmos o ```Assert.Equal``` que testa se um texto é igual a um texto esperado. Vamos usar o ```Assert.Throws<>``` onde dentro do ```<>``` vamos colocar o tipo do erro que esperamos.
 
 No nosso caso, ficará:
 
@@ -188,7 +202,7 @@ Isso nos avisa que a função ```PegarFatia``` não está atendendo a regra de n
 Vamos atualizar a função ```PegarFatia``` incluindo, na primeira linha dela, a verificação se a quantidade é menor que zero.
 
 ```csharp
-    public static void PegarFatia(string ingrediente, int quantidade)
+    public static string PegarFatia(string ingrediente, int quantidade)
     {
         if (quantidade < 0)
         {

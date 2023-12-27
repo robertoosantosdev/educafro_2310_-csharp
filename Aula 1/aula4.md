@@ -111,7 +111,7 @@ dotnet add ./Sanduiche.Test/Sanduiche.Test.csproj reference ./Sanduiche/Sanduich
 ---
 
 
-#### Atenção
+#### ⚠️ Atenção ⚠️
 
 Antes de continuar, confirme que na barra inferior do Visual Studio Code, aparece a informação: "Projects: 2".
 
@@ -127,9 +127,9 @@ Vamos mudar a função ```MainTest``` com o seguinte conteúdo
 
 ```c#
 /// expected é o valor esperado ao executar o programa
-var expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
+string expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
 /// StringWriter tem a função de armazenar a saída do nosso programa
-using (var saida = new StringWriter())
+using (StringWriter saida = new StringWriter())
 {
     /// Aqui definimos que a saída do console será nosso StringWriter
     Console.SetOut(saida);
@@ -290,16 +290,11 @@ Vamos fazer o teste da função ```PegarFatiaDeQueijo```. A mensagem: "Peguei um
 [Fact]
     public void PegarFatiaDeQueijoTest()
     {
-        var expected = "Peguei uma fatia de queijo.\n";
+        string expectedQueijo = "Peguei uma fatia de queijo.\n";
 
-        using (var saida = new StringWriter())
-        {
-            Console.SetOut(saida);
+        string actualQueijo = Sanduiche.Program.PegarFatiaDeQueijo();
 
-            Sanduiche.Program.PegarFatiaDeQueijo();
-
-            Assert.EndsWith(expected, saida.ToString());
-        }
+        Assert.Equal(expectedQueijo, actualQueijo);
     }
 ```
 
@@ -338,7 +333,7 @@ Clique no arquivo e veja a alteração.
 #### Gerando a função PegarFatiaDeQueijo
 
 ```c#
-    public static void PegarFatiaDeQueijo()
+    public static string PegarFatiaDeQueijo()
     {
         throw new NotImplementedException();
     }
@@ -357,21 +352,39 @@ A função ```throw new NotImplementedException();``` faz exatamente isso. Ela d
 
 ---
 
-
 #### Vamos resolver isso!
 
 Agora vamos alterar o código da função ```PegarFatiaDeQueijo``` com o seguinte conteúdo:
 
 ```c#
-    public static void PegarFatiaDeQueijo()
+    public static string PegarFatiaDeQueijo()
     {
-        Console.WriteLine("Peguei uma fatia de queijo.");
+        return "Peguei uma fatia de queijo.";
     }
 ```
 
-O ```Console.WriteLine``` já conhecemos, ou seja, ele vai mostrar a mensagem na tela.
+Note que a função tem uma diferença em relação à função ```Main```.
 
-E novamente temos nossos testes executados com sucesso!
+```csharp
+/// Main:
+public static void Main()
+/// PegarFatiaDeQueijo:
+public static string PegarFatiaDeQueijo()
+```
+
+---
+
+#### Tipos de função
+
+Antes do nome da função, temos as palavras ```void``` e ```string```. Estes são os tipos das funções. A função ```Main``` é do tipo ```void``` que significa **vazio** ou seja, ela não tem um resultado. Já a função ```PegarFatiaDeQueijo``` é do tipo ```string``` ou seja, ela precisa retornar um texto.
+
+Por isso a linha:
+
+```csharp
+return "Peguei uma fatia de queijo.";
+```
+
+Ao salvar nossas alterações, novamente temos nossos testes executados com sucesso!
 
 ```console
 Starting test execution, please wait...
@@ -425,7 +438,7 @@ Mude o nome do teste ```PegarFatiaDeMortadelaTest``` para ```PegarFatiaTest```
 Mude a chamada da função ```PegarFatiaDeMortadela``` para:
 
 ```c#
-Sanduiche.Program.PegarFatia("mortadela");
+string actualMortadela = Sanduiche.Program.PegarFatia("mortadela");
 ```
 
 Ou seja, ```"mortadela"``` é um parâmetro da função ```PegarFatia```
@@ -441,12 +454,12 @@ Ao salvar o arquivo, novamente nossos testes vão dizer:
 
 #### Funções com parâmetros
 
-Observe que agora o teste ```PegarFatiaTest``` espera que a mensagem ```Peguei uma fatia de mortadela.\n``` seja exibida quando o parâmetro for ```"mortadela"```. Mas e quando for ```"queijo"```?
+Observe que agora o teste ```PegarFatiaTest``` espera que a mensagem ```Peguei uma fatia de mortadela.\n``` seja o retorno da função quando o parâmetro for ```"mortadela"```. Mas e quando for ```"queijo"```?
 
 Vamos precisar de mais uma variável ```expected```
 
 ```c#
-        var expected2 = "Peguei uma fatia de queijo.\n";
+        string expectedQueijo = "Peguei uma fatia de queijo.\n";
 ```
 
 De mais uma chamada da função ```PegarFatia``` mudando o parâmetro para ```"queijo"```
@@ -454,17 +467,17 @@ De mais uma chamada da função ```PegarFatia``` mudando o parâmetro para ```"q
 ⚠️ Depois do ```Assert``` que faz o primeiro teste.
 
 ```c#
-            Sanduiche.Program.PegarFatia("queijo");
+string actualQueijo = Sanduiche.Program.PegarFatia("queijo");
 ```
 
 ---
 
 #### Funções com parâmetros
 
-E por fim, mais um ```Assert``` mas agora para a variável ```expected2``` que acabamos de criar.
+E por fim, mais um ```Assert``` mas agora para a variável ```expectedQueijo``` que acabamos de criar.
 
 ```c#
-            Assert.EndsWith(expected2, saida.ToString());
+            Assert.Equal(expectedQueijo, actualQueijo);
 ```
 
 Ao salvar o arquivo, novamente nossos testes vão dizer:
@@ -484,38 +497,10 @@ Mude o nome para ```PegarFatia```
 Agora, para que essa função aceite parâmetros, vamos criar uma variável nela.
 
 ```c#
-    public static void PegarFatia(string ingrediente)
+    public static string PegarFatia(string ingrediente)
 ```
 
-Ou seja, ```string ingrediente"``` indicam que a função aceita um parâmetro e seu tipo é string, que significa, texto.
-
-E para usar essa variável, vamos usar uma outra versão da função ```Console.WriteLine```
-
-
----
-
-#### Funções com parâmetros
-
-
-Se você passar o mouse sobre a função ```Console.WriteLine```, você verá que ela possui +17 *overloads*
-
-![Overloads da função Console.WriteLine](/assets/images/imagem_26_overloads.png)
-
-Isso significa que ela possui 18 formas diferentes de ser utilizada.
-
-
----
-
-#### Funções com parâmetros
-
-Se você apagar o ```)``` no final dela e digitar ```,```, você verá que na forma 14/18 a sugestão recebe um ```string format```, ou seja, um texto que usa recursos de formatação e um parâmetro que vai ser usado nessa formatação.
-
-![Opção 14/18 com string format](/assets/images/imagem_27_string_format.png)
-
-Para usar essa versão, vamos substituir a palavra ```mortadela``` por ```{0}```, indicando que nesse lugar vai o valor do parâmetro.
-
-E depois da vírgula, vamos colocar nosso parâmetro ```ingrediente```.
-
+Ou seja, ```string ingrediente"``` indicam que a função aceita um parâmetro e seu tipo é ```string```, que significa, texto.
 
 ---
 
@@ -524,13 +509,19 @@ E depois da vírgula, vamos colocar nosso parâmetro ```ingrediente```.
 A versão final fica assim:
 
 ```c#
-    public static void PegarFatia(string ingrediente)
+    public static string PegarFatia(string ingrediente)
     {
-        Console.WriteLine("Peguei uma fatia de {0}.", ingrediente);
+        return string.Format("Peguei uma fatia de {0}.", ingrediente);
     }
 ```
 
-Ou seja, uma única função que consegue pegar uma fatia de qualquer coisa.
+Note que o retorno da função é o resultado de uma outra função. ```string.Format``` é uma função que toda ```string``` tem. Ele recebe um parâmetro do tipo ```string``` que contém um texto com números entre chaves, ```{0}```, para indicar que aquele lugar tem que ser substituído com o valor da variável que está no próximo parâmetro da função.
+
+---
+
+#### Função com parâmetros
+
+Então no final, temos uma única função que consegue pegar uma fatia de qualquer coisa.
 
 Salve o arquivo e veja seus testes executarem novamente, mas agora, com sucesso!
 
