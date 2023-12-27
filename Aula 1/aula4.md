@@ -128,16 +128,13 @@ Vamos mudar a função ```MainTest``` com o seguinte conteúdo
 ```c#
 /// expected é o valor esperado ao executar o programa
 var expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
-/// A função Main do nosso programa recebe um parâmetro chamado args
-/// Aqui criamos um variável para simular o valor desse parâmetro
-string[] args = { };
 /// StringWriter tem a função de armazenar a saída do nosso programa
 using (var saida = new StringWriter())
 {
     /// Aqui definimos que a saída do console será nosso StringWriter
     Console.SetOut(saida);
     /// Simulamos a chamada do nosso programa
-    Sanduiche.Program.Main(args);
+    Sanduiche.Program.Main(null);
     /// Testamos se a saída do programa é a que esperamos
     Assert.EndsWith(expected, saida.ToString());
 }
@@ -153,7 +150,7 @@ Aqui é importante entender que:
 
 1. Variáveis são utilizadas para armazenar valores (textos, datas, números...)
 2. Variáveis ocupam espaço na memória e, algumas vezes outros recursos
-3. Em ```Sanduiche.Program.Main(args)``` usamos o *namespace*, o nome da classe e o nome da função
+3. Em ```Sanduiche.Program.Main(null)``` usamos o *namespace*, o nome da classe e o nome da função
 4. Em C# maiúsculas e minúsculas fazem diferença
 5. Ao final de cada instrução é necessário um ;
 6. Algumas funções como o *using* não precisam de ; mas de { }
@@ -237,7 +234,7 @@ O ```dotnet watch``` fica monitorando nossos arquivos e sempre que tem uma alter
 
 #### Desenvolvendo a função Main
 
-Vamos mudar o código da função Main. Para ir até ela, você pode utilizar o Explorer, abrir o arquivo ```Program.cs``` ou no seu teste, clicar na palavra ```Main``` em ```Sanduiche.Program.Main(args)``` e teclar **F12**
+Vamos mudar o código da função Main. Para ir até ela, você pode utilizar o Explorer, abrir o arquivo ```Program.cs``` ou no seu teste, clicar na palavra ```Main``` em ```Sanduiche.Program.Main(null)``` e teclar **F12**
 
 A função Main deve ficar assim:
 
@@ -544,5 +541,12 @@ Passed!  - Failed:     0, Passed:     3, Skipped:     0, Total:     3, Duration:
 ```
 
 ##### ⚠️ Faça um novo commit
+
+---
+
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋
 
 
