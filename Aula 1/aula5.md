@@ -199,4 +199,9 @@ Vamos atualizar a função ```PegarFatia``` incluindo, na primeira linha dela, a
 
 ---
 
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋
+
 

@@ -257,3 +257,10 @@ Vale apena relembrar das aulas de Português. Todo verbo transitivo precisa de u
 > Quem **reserva**, reserva alguma coisa
 
 Ou seja, se você estiver escrevendo essas funções é melhor passar o objeto como parâmetro. Assim, seu programa de computador vai estar pronto para emprestar **lápis**, mas no futuro também pode emprestar um **caderno** ou uma **caneta**.
+
+---
+
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋

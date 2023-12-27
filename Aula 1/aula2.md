@@ -210,3 +210,10 @@ Agora escolha um nome para o repositório.
 ![Alt text](imagem_10_nome_repositorio.png)
 
 No meu caso eu escolhi: ```aula-sanduiche-educafro-csharp```
+
+---
+
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋

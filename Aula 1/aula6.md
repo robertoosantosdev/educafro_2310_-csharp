@@ -249,5 +249,12 @@ A total of 1 test files matched the specified pattern.
 Passed!  - Failed:     0, Passed:     3, Skipped:     0, Total:     3, Duration: 3 ms - Sanduiche.Test.dll
 ```
 
+---
+
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋
+
 
 
