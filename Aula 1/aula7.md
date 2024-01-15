@@ -22,7 +22,7 @@ img[alt$="center"] {
 
 # Educafro Tech
 ## Curso C# - Do Básico ao MVC
-### Aula 6
+### Aula 7
 ---
 # Agenda
 1. Introdução à Programação e Ambiente de Desenvolvimento
@@ -393,7 +393,11 @@ Tudo isso, graças à marcação ```virtual``` no método da classe mãe e ```ov
 
 <style scoped>section { justify-content: center; }</style>
 
-# Muito obrigado
+# 🎈 Parabéns!
+## Você chegou ao final do módulo básico!
+
+Todos os códigos que desenvolvemos até aqui estão disponíveis em: https://github.com/robertoosantos/aula-sanduiche-educafro-csharp
+
 ## E nos vemos na próxima aula! 👋
 
 
