@@ -1,0 +1,52 @@
+@startuml
+class Cargo {
+    int Id
+    string Nome
+    int Nivel
+}
+
+class Funcionario {
+    int Id
+    string Nome
+    DateTime Nascimento
+    DateTime Adminissao
+    DateTime Demissao
+    string Email
+    decimal Salario
+    List<Funcionario> Listar()
+    #List<Funcionario> Listar(bool ativos)
+}
+
+class Avaliacao {
+    int Id
+    int IdFuncionario
+    int IdGerente
+    DateTime RealizadaEm
+    int Nota
+    string Comentario
+}
+
+class Gerente {
+    Funcionario Contratar(Funcionario novoFuncionario)
+    Funcionario Demitir(Funcionario funcionario)
+    Funcionario AumentarSalario(Funcionario funcionario, decimal Salario)
+    List<Funcionario> Listar()
+}
+
+Funcionario <|-- Gerente
+Funcionario o-- Cargo
+Funcionario "1" *-- "muitos" Avaliacao : é avalidado
+note bottom on link : Esse tipo de relacionamento indica \nque Funcionario tem uma lista \ndo tipo Avaliacao
+
+Gerente "1" *-- "muitos" Avaliacao : avalia
+
+note top of Funcionario : Classe principal que representa\n os funcionários da empresa
+note left of Funcionario::Id
+    As propriedades são 
+    representadas assim
+end note
+note left of Gerente::Contratar
+    Os métodos são 
+    representados assim
+end note
+@enduml
