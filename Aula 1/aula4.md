@@ -115,7 +115,7 @@ dotnet add ./Sanduiche.Test/Sanduiche.Test.csproj reference ./Sanduiche/Sanduich
 
 Antes de continuar, confirme que na barra inferior do Visual Studio Code, aparece a informação: "Projects: 2".
 
-![Barra de status informando que existem dois projetos nesse repositório](/assets/images/imagem_projetos_carregados.png)
+![Barra de status informando que existem dois projetos nesse repositório](../assets/images/imagem_projetos_carregados.png)
 
 Se não estiver, vai ser necessário fechar e abrir o Visual Studio Code.
 
@@ -314,17 +314,17 @@ Por sorte, o Visual Studio Code e suas extensões nos ajudam.
 
 Clique no nome da função e tecle CTRL + . ou clique na lampada no lado esquerdo do código
 
-![Gerar o método PegarFatiaDeQueijo](/assets/images/imagem_24_quick_fix.png)
+![Gerar o método PegarFatiaDeQueijo](../assets/images/imagem_24_quick_fix.png)
 
 ---
 
 #### Gerando a função PegarFatiaDeQueijo
 
-![Gerar o método PegarFatiaDeQueijo](/assets/images/imagem_24_quick_fix.png)
+![Gerar o método PegarFatiaDeQueijo](../assets/images/imagem_24_quick_fix.png)
 
 Clique na primeira opção. Ela vai gerar o a função ```PegarFatiaDeQueijo``` para você!
 
-Veja que o arquivo Program.cs é aberto e uma bola branca ao lado do nome indica que ele foi alterado, mas a alteração não foi salva ![Program.cs alterado](/assets/images/imagem_25_arquivo_alterado.png)
+Veja que o arquivo Program.cs é aberto e uma bola branca ao lado do nome indica que ele foi alterado, mas a alteração não foi salva ![Program.cs alterado](../assets/images/imagem_25_arquivo_alterado.png)
 
 Clique no arquivo e veja a alteração.
 
