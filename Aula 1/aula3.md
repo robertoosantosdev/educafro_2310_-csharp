@@ -140,7 +140,7 @@ No canto superior direito clique em **<> Code**
 
 ![Copiar repositório GitHub h:350](../assets/images/imagem_16_https_repo.png)
 
-Copie o endereço HTTPS do seu repositório clicando em: ![Botão para copiar endereço do repositório](/assets/images/imagem_copiar_github.png)
+Copie o endereço HTTPS do seu repositório clicando em: ![Botão para copiar endereço do repositório](../assets/images/imagem_copiar_github.png)
 
 
 ---
@@ -149,9 +149,9 @@ Copie o endereço HTTPS do seu repositório clicando em: ![Botão para copiar en
 
 Abra o Visual Studio Code.
 
-Do lado esquerdo, toque em ![Botão para ver o Source Control](/assets/images/imagem_botao_source_control.png)
+Do lado esquerdo, toque em ![Botão para ver o Source Control](../assets/images/imagem_botao_source_control.png)
 
-![Source Control aberto](/assets/images/imagem_17_source_control.png)
+![Source Control aberto](../assets/images/imagem_17_source_control.png)
 
 
 ---
@@ -160,15 +160,15 @@ Do lado esquerdo, toque em ![Botão para ver o Source Control](/assets/images/im
 
 Clique no botão ***Clone Repository***
 
-![Botão para clonar repositório](/assets/images/imagem_20_clone_repository.png)
+![Botão para clonar repositório](../assets/images/imagem_20_clone_repository.png)
 
 Clique em ***Clone from GitHub***
 
-![Opção para clonar do GitHub](/assets/images/imagem_19_clone_github.png)
+![Opção para clonar do GitHub](../assets/images/imagem_19_clone_github.png)
 
 Clique no repositório que você criou no começo dessa aula
 
-![Opção com o repositório da aula](/assets/images/imagem_21_repositorio_aula.png)
+![Opção com o repositório da aula](../assets/images/imagem_21_repositorio_aula.png)
 
 
 ---
@@ -192,7 +192,7 @@ A base de todo programa C# é um projeto.
 
 Para criar um projeto, no Visual Studio Code clique em **Terminal** > **New Terminal** ou **Novo Terminal**.
 
-![Menu para abrir terminal](/assets/images/imagem_abrir_terminal.png)
+![Menu para abrir terminal](../assets/images/imagem_abrir_terminal.png)
 
 ---
 
@@ -261,11 +261,11 @@ Esses são alguns exemplos de projetos que você pode fazer em .Net.
 
 Vamos usar o ```dotnet new solution``` para criar uma solução .Net.
 
-Veja que foi criado 1 arquivos no seu repositório. No lado esquerdo clique em: ![Botão para abrir o Explorer](/assets/images/imagem_explorer_vscode.png)
+Veja que foi criado 1 arquivos no seu repositório. No lado esquerdo clique em: ![Botão para abrir o Explorer](../assets/images/imagem_explorer_vscode.png)
 
 E veja os arquivos marcados com **U**
 
-![Arquivo da solução criada](/assets/images/imagem_22_nova_solucao.png)
+![Arquivo da solução criada](../assets/images/imagem_22_nova_solucao.png)
 
 ---
 
@@ -286,7 +286,7 @@ De volta ao terminal, vamos usar o ```dotnet new console -o Sanduiche --use-prog
 
 Veja que foram criados uma pasta com o nome "Sanduiche" e 2 arquivos nesta pasta.
 
-![Arquivos do projeto criados](/assets/images/imagem_23_arquivos_projeto.png)
+![Arquivos do projeto criados](../assets/images/imagem_23_arquivos_projeto.png)
 
 ---
 

@@ -44,7 +44,7 @@ img[alt$="center"] {
 
 #### Quem sou eu?
 
-![image alt <](https://media.licdn.com/dms/image/D4D03AQGV6tXPqdKwtg/profile-displayphoto-shrink_200_200/0/1689793670219?e=1703721600&v=beta&t=RXZWE-7NvGH473xOlc4bARqd4x_L6WN9qTy29gIoH-A) Roberto de Oliveira Santos
+![Retrato de Roberto, homem negro, calvo e com barba. <](../assets/images/eu.png) Roberto de Oliveira Santos
 37 anos
 Gerente @ Itaú Unibanco
 Homem negro, apaixonado por tecnologia e por agilidade
