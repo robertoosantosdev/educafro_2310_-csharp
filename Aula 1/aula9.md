@@ -39,147 +39,142 @@ img[alt$="center"] {
 <style scoped>section { justify-content: center; }</style>
 
 ### 4. Desenvolvimento Web com ASP.NET MVC
-#### UML
+#### Arquitetura MVC
 
 ---
 
 #### Introdução
 
-A partir de agora vamos desenvolver um projeto real! Um sistema de **Gestão de Pessoas**!
+> Um padrão de design para alcançar uma separação clara de preocupações
 
-A empresa que te contratou, para esse desenvolvimento, quer gerenciar:
+Fonte: https://dotnet.microsoft.com/pt-br/apps/aspnet/mvc
 
-1. Lista de funcionários da empresa
-2. Contratação e Demissão
-3. Aumentos
-4. Avaliações
+Assim como as funções devem ser específicas, todas as partes de um sistema devem ter uma preocupação específica.
 
-Mas antes de sairmos programando milhares de linhas de código, uma importante parte do nosso trabalho é a **Análise e Planejamento**
-
-E para nos ajudar, existem uma ferramenta chamada **UML**.
+Existem vários modelos que se propõem as resolver este problema, mas em C#, um dos mais populares é o **MVC**.
 
 ---
 
-#### UML
+#### Arquitetura
 
->A UML é uma linguagem-padrão para a elaboração da estrutura de projetos de software. Ela poderá ser empregada para a visualização, a especificação, a construção e a documentação de artefatos que façam uso de sistemas complexos de software.
+![Modelo conceitual da arquitetura MVC center](../diagrams/out/arquitetura_mvc/arquitetura_mvc.png)
 
-Enquanto escrever código é algo trabalhoso e que, muitas vezes depois de feito, temos **resistência** em fazer mudanças, desenhar é algo que dá maior flexibilidade para validar e adaptar melhor nosso sistema à necessidades do negócio.
+Nesse diagrama temos os três componentes do MVC. Cada um com uma preocupação específica.
 
----
-
-#### UML
-
-A UML se baseia em diagramas para representar **Classes e Objetos** do nosso sistema.
-
-Para desenhar diagramas UML você pode usar a extensão **PlantUML** do Visual Studio Code, mas essa parte não será ensinada nesse curso. Mas, se quiser saber mais sobre, acesse: https://www.youtube.com/watch?v=WSC1K_rDf2w
+**Model**: Responsável por representar todos os dados da aplicação. Ex.: Funcionário
+**View**: Responsável por definir as telas da nossa aplicação. Ex.: Tela de contratação.
+**Controller**: Responsável por gerenciar as ações que acontecem na nossa aplicação.
 
 ---
 
-#### UML
+#### Criando uma aplicação MVC
 
-O primeiro passo para desenvolver um sistema é entender bem a necessidade do seu cliente.
+Acesse: https://github.com com seu usuário e senha.
 
-No nosso caso, já sabemos a lista de funções que o sistema deve ter.
+Agora acesse: https://github.com/robertoosantos/abantu
+Esse é o nosso projeto. *Abantu*, em zulu, significa "pessoas".
 
-Mas vamos para mais alguns detalhes.
+Normalmente, quando você vai trabalhar em uma empresa, eles já possuem diversos projetos. Vai ser mais comum que você tenha que dar manutenção ou evoluir um projeto existente, do que criar um novo projeto.
 
----
+Uma das formas de trabalhar em um projeto existente é o *Fork*.
 
-#### Dados
-
-As informações que o sistema deve armazenar são:
-
-1. Funcionários: Nome completo, data de nascimento, email, cargo, salário, data de admissão e data de demissão.
-2. Gerentes: Deve ter as mesmas informações dos funcionário.
-3. Avaliações: Funcionário avaliado, gerente avaliador, data da avaliação, nota (1 a 10) e comentário do avaliador
-4. Cargo: Nome e Nível (onde nível 1 = Funcionário e 2 = Gerente)
+Com o *Fork* você faz uma cópia do projeto para seu perfil e tem liberdade para desenvolver sem se preocupar em atrapalhar o projeto principal ou outros desenvolvedores.
 
 ---
 
-#### Funcionalidades
+#### Criando uma aplicação MVC
 
-1. Contratação: Somente um gerente pode contratar um funcionário. Para contratar um novo funcionário, todos dados pessoais devem ser informados. Um funcionário só pode ser contratado uma única vez e só pode ter um único cargo.
-2. Demissão: Somente um gerente pode demitir. Um funcionário só pode ser demitido se estiver contratado e se a média das suas 2 últimas avaliações for menor que 5.
-3. Aumento: Um funcionário só pode receber um aumento se a média das últimas 3 avaliações for maior que 7.
-4. Avaliação: Somente um gerente pode avaliar um funcionário.
-5. Cargos: Cargos só podem ser criados por gerentes.
+No canto superior direito, clique em *Fork*. ![Botão para fazer o fork de um repositório](../assets/images/imagem_fork.png)
 
----
+Depois clique no botão ***Create Fork***.
 
-#### Funcionalidades
+Agora você tem uma cópia do repositório exclusiva para você.
 
-e por fim:
-
-6. Listagens: Todos podem consultar usuários ativos, porém, somente o gerente pode ver funcionários demitidos.
+> Existem outras formas de organizar projetos e times de desenvolvimento. Para saber mais, leia: https://www.atlassian.com/br/git/tutorials/comparing-workflows/gitflow-workflow
 
 ---
 
-#### Diagrama de classes
+#### Criando uma aplicação MVC
 
-Desenhando essas regras em um digrama de classes UML temos:
+Agora vamos fazer o processo de ```clone```, assim como fizemos no projeto Sanduiche.
 
-![Diagrama de classes UML representando as regras fornecidas pelos cliente h:480 center](../diagrams/out/classDiagram/classDiagram.png)
+E vamos abrir o projeto no Visual Studio Code.
 
----
+Por boa prática, vamos criar uma pasta chamada **src**. src é uma abreviação para ***source*** que é como é chamado o código do seus programas.
 
-#### Diagrama de classes
+Agora vamos abrir o **Terminal** e usar novamente o comando ```dotnet new```.
 
-Vamos começar pelo mais simples.
+Mas dessa vez, vamos usar o ```dotnet new sln```. sln é a abreviação para ***solution***. Uma solução é um conjunto de projetos que fazem parte de um sistema.
 
-No centro do diagrama temos a classe ```Cargo```.
+No terminal, acesse o diretório **src** com o comando: ```cd src```.
 
-Ela é muito simples. Tem apenas 3 propriedades. A primeira é o ```Id```. Note que essa propriedade não foi pedida pelo cliente mas é muito importante no desenvolvimento de qualquer sistema.
-
-Id vem de Identificador. Ou seja, mesmo que se tenha dois cargos com o mesmo nome ou nomes muito parecidos, o ```Id``` tornaria eles diferentes.
-
-O ```Id``` mais comum que você conhece é, provavelmente o CPF. Ele é um número único para cada cidadão brasileiro. Mesmo que duas pessoas tenham o mesmo nome, seus CPFs serão diferentes.
+Depois execute o comando ```dotnet new sln -n abantu```.
 
 ---
 
-#### Diagrama de classes
+#### Criando uma aplicação MVC
 
-Note que todas as classes tem essa propriedade ```Id```. E que todas elas são do tipo ```int```. Isso significa que elas são números inteiros e sequenciais. O primeiro cargo será o 1, o segundo o 2 e assim sucessivamente.
+Note que na pasta **src** surgiu um novo arquivo com o nome abantu.
 
-Além disso ela tem o ```Nome``` e o ```Nivel``` conforme especificado pelo cliente.
+Agora na pasta **src** crie uma nova pasta chamada **abantu.mvc**.
 
-Observe que há uma linha saindo dela e apontando para a classe ```Funcionário```. Esse tipo de associação, com um losangolo branco na ponta, representa que além das propriedades de descritas, ```Funcionário``` tem mais uma propriedade do tipo ```Cargo```.
+No terminal, acesse a pasta **abantu.mvc**. E vamos usar novamente o comando ```dotnet new```. Mas dessa vez, vamos usar o ```dotnet new mvc -au Individual```.
 
----
+```-au Individual```, é um parâmetro utilizado para criar um projeto do tipo MVC, já com funções de cadastro e permissões de usuário.
 
-#### Diagrama de classes
+Vamos executar o projeto para ver tudo que o .Net já fez pra gente.
 
-Agora vamos analisar a classe ```Funcionario```. Já aprendemos que a associação que ela possui com ```Cargo``` faz com que ela tenha uma propriedade adicional além das listadas. E que ```Id``` é um número inteiro sequencial para identificar os funcionários.
-
-Adicionalmente temos as outras propriedades com uma novidade. O tipo ```DateTime```, que representa uma data e hora.
-
-Temos também outras duas associações com a classe ```Funcionario```. A linha com o losangolo preto, representa que um funcionário pode ter muitas ```Avaliações```. Já a linha com uma seta branca, indica que ```Gerente``` é uma classe filha de funcionário. Lembra? **Herança**.
+Para isso execute o comando: ```dotnet run```.
 
 ---
 
-#### Diagrama de classes
+#### Criando uma aplicação MVC
 
-Na classe ```Funcionário``` temos ainda dois métodos ```Listar```. Um que recebe um parâmetro do tipo ```bool``` que significa um operador lógico, ou seja ***verdadeiro** ou **falso**.
+Novamente na pasta **src** crie uma nova pasta chamada **abantu.tests**.
 
-Note que ele possui um losango amarelo ao seu lado. Isso indica que somente ```Funcionário``` e suas filhas podem enxergar essa função. Ela é ```protected```.
+No terminal, acesse a pasta **abantu.tests**. E vamos usar novamente o comando ```dotnet new```. Mas dessa vez, vamos usar o ```dotnet new xunit```.
 
-Já o outro método ```Listar``` não tem losango, ou seja, é público e pode ser usado em qualquer lugar do sistema e não tem parâmetros. Ele vai ser usado para retornar somente funcionários ativos.
+Esse será nosso projeto de testes.
 
----
+Pare a execução do nosso site, clicando no terminal e digitando **CTRL+C**.
 
-#### Diagrama de classes
+Acesse a pasta **abantu.tests** com o comando: ```cd ../abantu.tests/```.
 
-A classe ```Gerente```, além das propriedades que possui por **herança**, também possui alguns métodos. ```Contratar``` que recebe um novo ```Funcionario``` a ser contratado. ```Demitir``` que recebe o ```Funcionario``` que será demitido. ```AumentarSalario``` que recebe o ```Funcionario``` que terá o aumento e o valor do novo ```Salario```. E por fim ```Listar``` que **sobrescreve** (Lembram? **Polimorfismo**) a função da classe mãe para poder listar também os funcionários demitidos.
-
-Quando um objeto do tipo ```Gerente``` chamar o método ```Listar```, na verdade estará chamando o método ```protected List<Funcionario> Listar(bool ativos)``` informando ```true``` ou seja, verdadeiro, no parâmetro. 
+E execute o comando ```dotnet new xunit```.
 
 ---
 
+#### Criando uma aplicação MVC
 
-> Para simplificar, não apliquei um conceito que gosto bastante:
-Em todas as classes ter data de criação, data da última modificação, quem criou e quem modificou cada classe. Imagine que meses depois de uma alteração alguém pergunte, *"quem aumentou o salário do funcionário João?"* Sem essas informações, será impossível responder.
+Finalmente vamos adicionar nossos projetos na nossa solução.
+
+No terminal, retorne para a pasta **src** com o comando ```cd ..```.
+
+Para adicionar um projeto numa solução, use o comando: ```dotnet sln add```.
+
+Para adicionar o projeto **mvc**, execute o comando: ```dotnet sln add abantu.mvc```.
+
+Adicione também o projeto **tests**.
+
+Agora, para confirmar que tudo deu certo, execute o comando ```dotnet build```. Esse comando transforma nosso código num programa de computador.
+
+O resultado deve ser:
 
 ---
+
+#### Criando uma aplicação MVC
+
+```
+dotnet build
+MSBuild version 17.8.3+195e7f5a3 for .NET
+  Determining projects to restore...
+  All projects are up-to-date for restore.
+  abantu.tests -> /workspaces/abantu/src/abantu.tests/bin/Debug/net8.0/abantu.tests.dll
+  abantu.mvc -> /workspaces/abantu/src/abantu.mvc/bin/Debug/net8.0/abantu.mvc.dll
+```
+
+---
+
 
 <style scoped>section { justify-content: center; }</style>
 

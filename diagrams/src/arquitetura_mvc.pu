@@ -1,0 +1,5 @@
+@startuml
+[Model] <-d- [View] : exibe
+[View] <-r- [Controller] : atualiza
+[Controller] -u-> [Model] : manipula
+@enduml
