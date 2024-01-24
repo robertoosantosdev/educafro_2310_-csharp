@@ -8,10 +8,7 @@ class Cargo {
 class Funcionario {
     int Id
     string Nome
-    DateTime Nascimento
-    DateTime Adminissao
     DateTime Demissao
-    string Email
     decimal Salario
     List<Funcionario> Listar()
     #List<Funcionario> Listar(bool ativos)
@@ -29,7 +26,7 @@ class Avaliacao {
 class Gerente {
     Funcionario Contratar(Funcionario novoFuncionario)
     Funcionario Demitir(Funcionario funcionario)
-    Funcionario AumentarSalario(Funcionario funcionario, decimal Salario)
+    Funcionario AumentarSalario(Funcionario funcionario, decimal novoSalario)
     List<Funcionario> Listar()
 }
 
