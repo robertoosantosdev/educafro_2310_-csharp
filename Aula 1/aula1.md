@@ -28,7 +28,7 @@ img[alt$="center"] {
 2. Fundamentos da Programação em C#
 3. Programação Orientada a Objetos (POO)
 4. Desenvolvimento Web com ASP.NET MVC
-5. Banco de Dados SQL Server e Entity Framework
+5. Banco de Dados e Entity Framework
 6. Construção de um Aplicativo Web MVC
 7. Implementando Recursos Avançados
 8. Melhores Práticas e Testes
