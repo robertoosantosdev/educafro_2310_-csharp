@@ -8,16 +8,16 @@ class Cargo {
 class Funcionario {
     int Id
     string Nome
-    DateTime Demissao
+    bool Ativo
     decimal Salario
     List<Funcionario> Listar()
-    #List<Funcionario> Listar(bool ativos)
+    #List<Funcionario> Listar(bool somenteAtivos)
 }
 
 class Avaliacao {
     int Id
-    int IdFuncionario
-    int IdGerente
+    Funcionario Avaliado
+    Gerente Avaliador
     DateTime RealizadaEm
     int Nota
     string Comentario

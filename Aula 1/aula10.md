@@ -130,14 +130,14 @@ namespace abantu.mvc.Models
     {
         public int Id { get; set; }
         public string Nome { get; set; }
-        public DateTime Demissao { get; set; }
+        public bool Ativo { get; set; }
         public decimal Salario { get; set; }
 
         public virtual List<Funcionario> Listar(){
             throw new NotImplementedException();
         }
 
-        protected List<Funcionario> Listar(bool ativos){
+        protected List<Funcionario> Listar(bool somenteAtivos){
             throw new NotImplementedException();
         }
     }
