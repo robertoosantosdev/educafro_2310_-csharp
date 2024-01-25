@@ -90,7 +90,7 @@ Mas vamos para mais alguns detalhes.
 
 As informações que o sistema deve armazenar são:
 
-1. Funcionários: Nome completo, cargo, salário e data de demissão.
+1. Funcionários: Nome completo, email, cargo, salário e se ele é um funcionário ativo ou não.
 2. Gerentes: Deve ter as mesmas informações dos funcionário.
 3. Avaliações: Funcionário avaliado, gerente avaliador, data da avaliação, nota (1 a 10) e comentário do avaliador
 4. Cargo: Nome e Nível (onde nível 1 = Funcionário e 2 = Gerente)
@@ -100,7 +100,7 @@ As informações que o sistema deve armazenar são:
 #### Funcionalidades
 
 1. Contratação: Somente um gerente pode contratar um funcionário. Para contratar um novo funcionário, todos dados pessoais devem ser informados. Um funcionário só pode ser contratado uma única vez e só pode ter um único cargo.
-2. Demissão: Somente um gerente pode demitir. Um funcionário só pode ser demitido se estiver contratado e se a média das suas 2 últimas avaliações for menor que 5.
+2. Demissão: Somente um gerente pode demitir. Um funcionário só pode ser demitido se a média das suas 2 últimas avaliações for menor que 5.
 3. Aumento: Um funcionário só pode receber um aumento se a média das últimas 3 avaliações for maior que 7.
 4. Avaliação: Somente um gerente pode avaliar um funcionário.
 5. Cargos: Cargos só podem ser criados por gerentes.
@@ -111,7 +111,7 @@ As informações que o sistema deve armazenar são:
 
 e por fim:
 
-6. Listagens: Todos podem consultar usuários ativos, porém, somente o gerente pode ver funcionários demitidos.
+6. Listagens: Todos podem consultar funcionários ativos, porém, somente o gerente pode ver funcionários demitidos.
 
 ---
 
@@ -131,7 +131,7 @@ No centro do diagrama temos a classe ```Cargo```.
 
 Ela é muito simples. Tem apenas 3 propriedades. A primeira é o ```Id```. Note que essa propriedade não foi pedida pelo cliente mas é muito importante no desenvolvimento de qualquer sistema.
 
-Id vem de Identificador. Ou seja, mesmo que se tenha dois cargos com o mesmo nome ou nomes muito parecidos, o ```Id``` tornaria eles diferentes.
+**Id** vem de **Id**entificador. Ou seja, mesmo que se tenha dois cargos com o mesmo nome ou nomes muito parecidos, o ```Id``` tornaria eles diferentes.
 
 O ```Id``` mais comum que você conhece é, provavelmente o CPF. Ele é um número único para cada cidadão brasileiro. Mesmo que duas pessoas tenham o mesmo nome, seus CPFs serão diferentes.
 
@@ -171,7 +171,7 @@ Já o outro método ```Listar``` não tem losango, ou seja, é público e pode s
 
 A classe ```Gerente```, além das propriedades que possui por **herança**, também possui alguns métodos. ```Contratar``` que recebe um novo ```Funcionario``` a ser contratado. ```Demitir``` que recebe o ```Funcionario``` que será demitido. ```AumentarSalario``` que recebe o ```Funcionario``` que terá o aumento e o valor do novo ```Salario```. E por fim ```Listar``` que **sobrescreve** (Lembram? **Polimorfismo**) a função da classe mãe para poder listar também os funcionários demitidos.
 
-Quando um objeto do tipo ```Gerente``` chamar o método ```Listar```, na verdade estará chamando o método ```protected List<Funcionario> Listar(bool ativos)``` informando ```true``` ou seja, verdadeiro, no parâmetro. 
+Quando um objeto do tipo ```Gerente``` chamar o método ```Listar```, na verdade estará chamando o método ```protected List<Funcionario> Listar(bool somenteAtivos)``` informando ```true``` ou seja, verdadeiro, no parâmetro. 
 
 ---
 
