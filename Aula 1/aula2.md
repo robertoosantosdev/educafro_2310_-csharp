@@ -145,7 +145,7 @@ Link: https://code.visualstudio.com/download
 No lado esquerdo você encontrará as funcionalidades do visual studio.
 
 1. Clique em **Extensões** e pesquise por C#
-2. Instale a extensão com a descrição ```Base language support for C#```.
+2. Instale a extensão **C# Dev Kit** com a descrição **Official C# extension from Microsoft**.
 
 ![h:350px Configuração da conta no Github](../assets/images/imagem_7_extensoes_visual_studio.png "Verificar conta")
 
@@ -188,28 +188,6 @@ Agora você está pronto para começar a desenvolver em C#!
 
 > O .NET é uma plataforma de desenvolvedor de software livre, criada pela Microsoft, para criar muitos tipos diferentes de aplicativos.
 **Microsoft MSDN*
-
----
-
-#### Criando uma aplicação .Net em C#
-
-Agora que temos tudo pronto, vamos começar no GitHub.
-
-Acesse: https://github.com com seu usuário e senha.
-
-No lado esquerdo, clique em **New**, para criar um novo repositório.
-
-![Novo repositório no GitHub](../assets/images/imagem_9_novo_repo.png "Novo Repositório")
-
----
-
-#### Criando uma aplicação .Net em C#
-
-Agora escolha um nome para o repositório.
-
-![Alt text](imagem_10_nome_repositorio.png)
-
-No meu caso eu escolhi: ```aula-sanduiche-educafro-csharp```
 
 ---
 

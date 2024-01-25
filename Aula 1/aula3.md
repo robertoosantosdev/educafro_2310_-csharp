@@ -185,6 +185,14 @@ Escolha ***Open*** ou ***Abrir***.
 
 ---
 
+#### Clonando um repositório
+
+Como você está baixando algo da internet, seu computador pode querer confirmar se você confia nesse conteúdo. Como você mesmo que criou esses documentos, confirme clicando em **Yes, I trust the authors**
+
+
+
+---
+
 
 #### Criando uma Console Application
 
@@ -502,7 +510,7 @@ Vamos mudar a função ```MainTest``` com o seguinte conteúdo
 
 ```c#
 /// expected é o valor esperado ao executar o programa
-string expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
+string expected = "Sanduíche de Mortadela com Queijo está pronto!";
 /// StringWriter tem a função de armazenar a saída do nosso programa
 using (StringWriter saida = new StringWriter())
 {
@@ -511,7 +519,7 @@ using (StringWriter saida = new StringWriter())
     /// Simulamos a chamada do nosso programa
     Sanduiche.Program.Main(null);
     /// Testamos se a saída do programa é a que esperamos
-    Assert.EndsWith(expected, saida.ToString());
+    Assert.Contains(expected, saida.ToString());
 }
 ```
 

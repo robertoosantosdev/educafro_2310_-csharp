@@ -127,7 +127,7 @@ Vamos mudar a função ```MainTest``` com o seguinte conteúdo
 
 ```c#
 /// expected é o valor esperado ao executar o programa
-string expected = "Sanduíche de Mortadela com Queijo está pronto!\n";
+string expected = "Sanduíche de Mortadela com Queijo está pronto!";
 /// StringWriter tem a função de armazenar a saída do nosso programa
 using (StringWriter saida = new StringWriter())
 {
@@ -136,7 +136,7 @@ using (StringWriter saida = new StringWriter())
     /// Simulamos a chamada do nosso programa
     Sanduiche.Program.Main(null);
     /// Testamos se a saída do programa é a que esperamos
-    Assert.EndsWith(expected, saida.ToString());
+    Assert.Contains(expected, saida.ToString());
 }
 ```
 
@@ -170,7 +170,7 @@ O resultado deve ser parecido com:
 [xUnit.net 00:00:00.68]     Sanduiche.Test.ProgramTest.MainTest [FAIL]
   Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
   Error Message:
-   Assert.EndsWith() Failure:
+   Assert.Contains() Failure:
 Expected: Sanduíche de Mortadela com Queijo está pronto!
 
 Actual:   Hello, World!
@@ -198,7 +198,7 @@ Um pouco mais pra cima temos a explicação da falha.
 ```console
   Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
   Error Message:
-   Assert.EndsWith() Failure:
+   Assert.Contains() Failure:
 Expected: Sanduíche de Mortadela com Queijo está pronto!
 
 Actual:   Hello, World!
@@ -253,7 +253,7 @@ Veja que mesmo com a alteração, seu teste falhou.
 ```console
   Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
   Error Message:
-   Assert.EndsWith() Failure:
+   Assert.Contains() Failure:
 Expected: Sanduíche de Mortadela com Queijo está pronto!
 
 Actual:   Sanduíche pronto!
