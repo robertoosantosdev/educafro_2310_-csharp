@@ -169,8 +169,8 @@ dotnet build
 MSBuild version 17.8.3+195e7f5a3 for .NET
   Determining projects to restore...
   All projects are up-to-date for restore.
-  abantu.tests -> /workspaces/abantu/src/abantu.tests/bin/Debug/net8.0/abantu.tests.dll
-  abantu.mvc -> /workspaces/abantu/src/abantu.mvc/bin/Debug/net8.0/abantu.mvc.dll
+  abantu.tests -> /workspaces/abantu/src/abantu.tests/bin/Debug/net7.0/abantu.tests.dll
+  abantu.mvc -> /workspaces/abantu/src/abantu.mvc/bin/Debug/net7.0/abantu.mvc.dll
 ```
 
 ---
