@@ -111,8 +111,8 @@ O construtor nada mais é que um método, sem retorno (nem mesmo **void**) com o
 Nesse caso:
 
 ```csharp
-// Variável interna para armazenar o nosso contexto de banco de dados
-private IdentityDbContext _db;
+// Variável compartilhada com filhas para armazenar o nosso contexto de banco de dados
+protected IdentityDbContext _db;
 
 // Construtor recebendo o contexto como parâmetro
 public Funcionario(IdentityDbContext db) {
@@ -120,106 +120,268 @@ public Funcionario(IdentityDbContext db) {
 }
 ```
 
-Agora que temos um contexto dentro da nossa classe, podemos seguir com o desenvolvimento da função ```protected Listar```.
+Como a classe ```Funcionario``` possui filhas. Precisamos criar o construtor nelas também. O construtor da classe ```Gerente``` fica assim:
+
+```csharp
+public Gerente(ApplicationDbContext db) : base(db)
+    { }
+```
+
+Apenas chamando o construtor da classe mãe.
 
 ---
 
 #### Listar
 
-Ela fica assim:
+Agora que temos um contexto dentro da nossa classe, podemos seguir com o desenvolvimento da função ```protected Listar```.
 
 ```csharp
-
+protected List<Funcionario> Listar(bool somenteAtivos)
+{
+    // Variável do tipo lista de funcionários que vai armazenar o retorno do método
+    List<Funcionario> funcionarios;
+    // Verificação se devemos filtrar somente funcionários ativos
+    if (somenteAtivos)
+        // Filtro de funcionários ativos
+        funcionarios = _db.Funcionarios.Where(funcionario => funcionario.Ativo == true).ToList();
+    else
+        // Listagem sem filtro
+        funcionarios = _db.Funcionarios.ToList();
+    // Retorno da função
+    return funcionarios;
+}
 ```
 
 ---
 
-#### Entity Framework
+#### Listar
 
-Estamos usando o EF no formato ***Code-First***. Ou seja, primeiro estamos construindo o código, para depois atualizar nosso banco de dados.
+Vamos por partes.
 
-Primeiramente instale a ferramenta, executando o comando abaixo no terminal:
+A consulta ao banco de dados é feita através da variável ```_db```. Graças ao EF, ela possui todas as nossas classes da **Model** como propriedade.
+
+Como queremos listar ```Funcionarios```, podemos usar ```_db.Funcionarios```.
+
+Para filtrar usamos a função ```Where```, que significa **onde**. Então vamos dizer algo do tipo, me traga todos os ```Funcionarios```, **ONDE** a propriedade ```Ativo``` seja igual a ```true``` ou seja, **verdeiro**.
+
+Já quando a função for chamada com ```false``` ou seja, **falso**, vamos apenas pedir ao banco, todos os ```Funcionarios```.
+
+Ao final, usamos a função ```ToList()``` para trasformar o resultado do banco numa lista.
+
+---
+
+#### Listar
+
+Hora de testar!
+
+No projeto de testes, mude o nome do arquivo ```UnitTest1.cs``` para ```FuncionarioTest.cs```. Mude também o nome da classe de ```UnitTest``` para ```FuncionarioTest```.
+`
+Quando vamos fazer testes de funções com banco de dados, alguns pontos são importantes:
+
+1. Ao invés de usar um banco de dados de verdade, use um ***mock***, ou seja, um banco falso ou simulado.
+2. Para garantir que você vai saber o resultado esperado dos seus testes, faça um cenário antes de iniciar os testes usando um **construtor**.
+
+---
+
+#### Listar
+<font size="2">
+
+```csharp
+// Variável interna que compartilha o banco entre os testes.
+    protected ApplicationDbContext _db;
+    // Construtor que constroi nosso cenario.
+    public FuncionarioTest()
+    {
+        // Aqui, criamos um banco falso (mock) em memória. Ou seja,
+        // assim que o teste termina, ele desaparece.
+        var connection = new SqliteConnection("Filename=:memory:");
+        // Essa função abre a conexão com o banco.
+        connection.Open();
+        // O EF precisa de algumas opções de contexto para ser criado.
+        // Usamos este Builder para nos ajudar no processo.
+        var contextOptions = new DbContextOptionsBuilder<ApplicationDbContext>()
+            .UseSqlite(connection)
+            .Options;
+        // Aqui iniciamos o EF com nosso banco de testes
+        _db = new ApplicationDbContext(contextOptions);
+        // Esta função garante que nossas tabelas existam no banco
+        _db.Database.EnsureCreated();
+        // Criamos um cargo de Vendedor somente para estes testes
+        var cargoVendedor = new Cargo();
+        cargoVendedor.Nome = "Vendedor";
+        cargoVendedor.Nivel = 0;
+        // Criamos um funcionário fictício
+        var juarez = new Funcionario(_db);
+        juarez.Nome = "Juarez Soares";
+        juarez.Salario = 1000;
+        juarez.Cargo = cargoVendedor;
+        juarez.Email = "a@a.com.br";
+        // Criamos um funcionário INATIVO fictício
+        var inativo = new Funcionario(_db);
+        inativo.Nome = "Jorge Matos";
+        inativo.Salario = 900;
+        inativo.Ativo = false;
+        inativo.Cargo = cargoVendedor;
+        inativo.Email = "j@m.com.br";
+        // Adicionamos o funcionário ao banco de dados
+        _db.Funcionarios.Add(juarez);
+        _db.Funcionarios.Add(inativo);
+        // Salvamos as alterações
+        _db.SaveChanges();
+    }
+```
+
+</font>
+
+
+---
+
+
+#### Listar
+
+Já no nosso teste fica assim:
+
+```csharp
+public void ListarTest()
+{
+    var expected = 1;
+
+    Funcionario funcionario = new Funcionario(_db);
+
+    List<Funcionario> funcionarios = funcionario.Listar();
+
+    var actual = funcionarios.Count;
+
+    Assert.Equal(expected, actual);
+}
+``` 
+
+---
+
+#### Listar
+
+Como nosso cenário feito no **construtor** tem 2 ```Funcionarios```, porém, somente 1 ativo, esperamos que a contagem (**Count**) resultado da função ```Listar``` seja igual a 1.
+
+Vamos executar nossos testes via **Terminal** acessando a pasta de testes com ```cd src/abantu.tests/``` e depois ```dotnet watch test```.
+
+**ATENÇÃO**: Em algumas versões recentes do .Net podem haver problemas na execução do ```dotnet watch```. Caso o resultado do teste não seja exibido, use ```dotnet test```.
+
+O seu resultado deve ter sido esse:
+
+---
+
+#### Listar
 
 ```
-dotnet tool install --global dotnet-ef
+[xUnit.net 00:00:01.75]     abantu.tests.FuncionarioTest.ListarTest [FAIL]
+  Failed abantu.tests.FuncionarioTest.ListarTest [990 ms]
+  Error Message:
+   Assert.Equal() Failure
+Expected: 1
+Actual:   0
 ```
 
-Se você receber o erro abaixo:
+Veja, esperávamos que tivéssemos 1 funcionário ativo, porém, tivemos 0. O que pode ter acontecido? Sim! Esquecemos de definir a propriedade ```Ativo``` com o valor ```true``` para o ```juarez```.
 
-<font size="5">
+Você poderia fazer isso no momento que cria o funcionário ```juarez```. Mas **sempre** que um novo funcionário é criado, ele deveria estar ativo. Então o melhor lugar para fazer isso é no **construtor** da classe ```Funcionario```.
 
+---
+
+#### Listar
+
+O construtor atualizado fica assim:
+
+ ```csharp
+// Construtor recebendo o contexto como parâmetro
+public Funcionario(ApplicationDbContext db)
+{
+    _db = db;
+    // Sempre que um novo funcionário for criado, ele será ativo.
+    Ativo = true;
+}
+ ```
+
+---
+
+#### Listar - Gerente
+
+A função ```Listar``` do ```Gerente``` fica assim:
+
+```csharp
+public override List<Funcionario> Listar()
+{
+    return Listar(false);
+}
 ```
-You must install or update .NET to run this application.
 
-App: /home/vscode/.dotnet/tools/dotnet-ef
-Architecture: x64
-Framework: 'Microsoft.NETCore.App', version '8.0.1' (x64)
-.NET location: /usr/share/dotnet
+Simples, não é mesmo? Ela apenas retorna o resultado da nossa função ```protected``` que está na classe mãe ```Funcionario``` com o parâmetro ```false```, pois um ```Gerente``` pode ver ```Funcionarios``` ativos e inativos.
 
-The following frameworks were found:
-  8.0.0 at [/usr/share/dotnet/shared/Microsoft.NETCore.App]
+---
+
+#### Listar - Gerente
+
+Agora, crie o arquivo ```GerenteTest.cs``` e assim como a classe ```Gerente``` herda de ```Funcionario```, a classe ```GerenteTest``` vai herdar de ```FuncionarioTest```.
+
+Ela fica assim::
+
+<font size="4">
+
+```csharp
+public class GerenteTest : FuncionarioTest
+{
+    public GerenteTest() : base()
+    {
+        // Criamos o cargo fictício de gerente
+        var cargoGerente = new Cargo();
+        cargoGerente.Nome = "Gerente";
+        cargoGerente.Nivel = 1;
+        // Criamos um gerente fictício
+        var maria = new Funcionario(_db);
+        maria.Nome = "Maria Antunes";
+        maria.Salario = 2000;
+        maria.Cargo = cargoGerente;
+        maria.Email = "m@a.com.br";
+        // Adicionamos ao banco criado na classe mãe
+        _db.Funcionarios.Add(maria);
+        // Salvamos
+        _db.SaveChanges();
+    }
 ```
 
 </font>
 
 ---
 
-#### Entity Framework
+#### Listar - Gerente
 
-Desinstale a ferramenta
+<font size="4">
 
-```
-dotnet tool uninstall --global dotnet-ef
-```
+```csharp
+    [Fact]
+    public override void ListarTest()
+    {
+        var expected = 3;
 
-E execute novamente com a mesma versão que aparece na última linha. Nesse exemplo: 8.0.0
+        Gerente gerente = new Gerente(_db);
 
-```
-dotnet tool install --global dotnet-ef --version 8.0.0
-```
+        List<Funcionario> funcionarios = gerente.Listar();
 
-Agora vamos criar uma ***migration**. Que basicamente são as instruções de atualização do banco de dados.
+        var actual = funcionarios.Count;
 
-```
-dotnet ef migrations add VersaoInicial
-```
-
----
-
-#### Entity Framework
-
-```VersaoInicial``` é o nome dessa atualização. Poderia ser qualquer nome.
-
-E depois vamos executar o comando que atualiza o banco de dados:
-
-```
-dotnet ef database update
+        Assert.Equal(expected, actual);
+    }
+}
 ```
 
-No terminal, o resultado que você está vendo, é o código SQL que o próprio EntityFramework gerou para você, através das suas classes.
+</font>
 
----
-
-#### Entity Framework
-
-Ex.:
+O resultado dos testes fica assim:
 
 ```
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      SELECT "MigrationId", "ProductVersion"
-      FROM "__EFMigrationsHistory"
-      ORDER BY "MigrationId";
-info: Microsoft.EntityFrameworkCore.Migrations[20402]
-      Applying migration '20240124190402_VersaoInicial'.
-Applying migration '20240124190402_VersaoInicial'.
-info: Microsoft.EntityFrameworkCore.Database.Command[20101]
-      Executed DbCommand (0ms) [Parameters=[], CommandType='Text', CommandTimeout='30']
-      CREATE TABLE "Cargos" (
-          "Id" INTEGER NOT NULL CONSTRAINT "PK_Cargos" PRIMARY KEY AUTOINCREMENT,
-          "Nome" TEXT NOT NULL,
-          "Nivel" INTEGER NOT NULL
-      );
+Starting test execution, please wait...
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     2, Skipped:     0, Total:     2, Duration: 4 ms - abantu.tests.dll (net7.0)
 ```
 
 ---
