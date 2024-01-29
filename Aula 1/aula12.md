@@ -336,7 +336,7 @@ public class GerenteTest : FuncionarioTest
         cargoGerente.Nome = "Gerente";
         cargoGerente.Nivel = 1;
         // Criamos um gerente fictício
-        var maria = new Funcionario(_db);
+        var maria = new Gerente(_db);
         maria.Nome = "Maria Antunes";
         maria.Salario = 2000;
         maria.Cargo = cargoGerente;
@@ -362,7 +362,8 @@ public class GerenteTest : FuncionarioTest
     {
         var expected = 3;
 
-        Gerente gerente = new Gerente(_db);
+        //Consultamos o primeiro gerente do banco de testes.
+        Gerente gerente = _db.Gerentes.First();
 
         List<Funcionario> funcionarios = gerente.Listar();
 
