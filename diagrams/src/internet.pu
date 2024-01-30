@@ -1,0 +1,22 @@
+@startuml
+actor Usuario as usr #Black
+usr -> Internet: GET http://abantu.com/Cargos/Create
+Internet -> Servidor: Consulta
+
+participant "abantu" as prj #LimeGreen
+Servidor -> prj: Executa
+prj -> Servidor: View Index
+Servidor -> Internet: Site
+Internet -> usr
+usr -> Internet: POST http://abantu.com/Cargos/Create
+Internet -> Servidor: Solicita criação
+Servidor -> prj: Executa
+
+database "Banco de Dados" as db #Orange
+prj -> db: Cadastra novo cargo
+db -> prj: Cargo criado
+prj -> Servidor: View Index
+Servidor -> Internet: Site
+Internet -> usr
+
+@enduml
