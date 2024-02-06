@@ -41,246 +41,8 @@ img[alt$="center"] {
 ### 2. Fundamentos da Programação em C#
 #### Criando uma aplicação .Net em C#
 
----
-
-#### Continuando nosso programa
-
-Agora, no projeto de testes, vamos renomear o arquivo clicando nele e apertando a tecla **F2** ```UnitTest1.cs``` para ```ProgramTest.cs```. Para deixar claro que esse arquivo vai testar o Programa base do nosso projeto.
-
-Clique duas vezes nesse arquivo para abrir.
-
-
 
 ---
-
-#### Uma classe
-
-Note que esse arquivo é muito parecido com o ```Program.cs```
-
-```c#
-namespace Sanduiche.Test;
-
-public class UnitTest1
-{
-    [Fact]
-    public void Test1()
-    {
-
-    }
-}
-```
-
----
-
-#### Uma classe
-
-```c#
-namespace Sanduiche.Test;
-```
-Enquanto o ```Program.cs``` está no ```Sanduiche```, o teste está em ```Sanduiche.Test```
-
-```c#
-public class UnitTest1
-```
-Essa classe se chama UnitTest1
-```c#
-    [Fact]
-```
-Indica que estamos testando um fato.
-```c#
-    public void Test1()
-```
-É a nossa função de testes
-
----
-
-#### Ajustando o teste
-
-Mude o nome da classe ```UnitTest1``` para ```ProgramTest```.
-
-Mude o nome da função de ```Test1``` para ```MainTest```.
-
-Isso significa que vamos testar a função principal do program do nosso projeto.
-
-Vamos adicionar uma referência do projeto principal ao projeto de testes com o comando:
-
-```
-dotnet add ./Sanduiche.Test/Sanduiche.Test.csproj reference ./Sanduiche/Sanduiche.csproj
-```
-
----
-
-
-#### ⚠️ Atenção ⚠️
-
-Antes de continuar, confirme que na barra inferior do Visual Studio Code, aparece a informação: "Projects: 2".
-
-![Barra de status informando que existem dois projetos nesse repositório](../assets/images/imagem_projetos_carregados.png)
-
-Se não estiver, vai ser necessário fechar e abrir o Visual Studio Code.
-
----
-
-#### Ajustando o teste
-
-Vamos mudar a função ```MainTest``` com o seguinte conteúdo
-
-```c#
-/// expected é o valor esperado ao executar o programa
-string expected = "Sanduíche de Mortadela com Queijo está pronto!";
-/// StringWriter tem a função de armazenar a saída do nosso programa
-using (StringWriter saida = new StringWriter())
-{
-    /// Aqui definimos que a saída do console será nosso StringWriter
-    Console.SetOut(saida);
-    /// Simulamos a chamada do nosso programa
-    Sanduiche.Program.Main(null);
-    /// Testamos se a saída do programa é a que esperamos
-    Assert.Contains(expected, saida.ToString());
-}
-```
-
----
-
-#### Ajustando o teste
-
-Tem muita coisa nesse código, mas eu vou explicar com calma em aulas futuras.
-
-Aqui é importante entender que:
-
-1. Variáveis são utilizadas para armazenar valores (textos, datas, números...)
-2. Variáveis ocupam espaço na memória e, algumas vezes outros recursos
-3. Em ```Sanduiche.Program.Main(null)``` usamos o *namespace*, o nome da classe e o nome da função
-4. Em C# maiúsculas e minúsculas fazem diferença
-5. Ao final de cada instrução é necessário um ;
-6. Algumas funções como o *using* não precisam de ; mas de { }
-
----
-
-#### Executando um teste
-
-##### ⚠️ Faça um novo commit
-Você pode usar o comentário "Versão inicial dos testes"
-
-Para executar um teste, execute o comando ```dotnet test```
-
-O resultado deve ser parecido com:
-
-```console
-[xUnit.net 00:00:00.68]     Sanduiche.Test.ProgramTest.MainTest [FAIL]
-  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
-  Error Message:
-   Assert.Contains() Failure:
-Expected: Sanduíche de Mortadela com Queijo está pronto!
-
-Actual:   Hello, World!
-
-  Stack Trace:
-     at Sanduiche.Test.ProgramTest.MainTest() in /workspaces/aula-sanduiche-educafro-csharp/Sanduiche.Test/ProgramTest.cs:line 28
-   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
-   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
-
-Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
-```
-
----
-
-#### Executando um teste
-
-Ao final, temos o resumo. Nosso teste falhou (*Failed*). 1 teste falhou, 0 tiveram sucesso e 0 foram ignorados. Nosso total de testes é 1.
-
-```console
-Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
-```
-
-Um pouco mais pra cima temos a explicação da falha.
-
-```console
-  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
-  Error Message:
-   Assert.Contains() Failure:
-Expected: Sanduíche de Mortadela com Queijo está pronto!
-
-Actual:   Hello, World!
-```
-
----
-
-#### Executando um teste
-
-Imagine que seu chefe, ou cliente pediu para que, quando o sanduíche estivesse pronto, fosse exibida a mensagem (*Expected*) "Sanduíche de Mortadela com Queijo está pronto!", você fez o teste para garantir esse resultado, mas nesse caso, foi exibida a mensagem (*Actual*) "Hello, World!".
-
-Apesar do teste ter falhado, isso foi bom. Garantimos que não vamos entregar um programa que faz o que não deveria!
-
-
----
-
-#### Desenvolvendo a função Main
-
-Vamos corrigir isso!
-
-Para que os testes continuem sempre rodando e te ajudando a verificar se você está desenvolvendo corretamente, utilize os seguintes comandos no terminal:
-
-```
-cd Sanduiche.Test/
-dotnet watch test
-```
-
-O ```dotnet watch``` fica monitorando nossos arquivos e sempre que tem uma alteração, ele executa o comando seguinte. No nosso caso, ```test```.
-
-
----
-
-
-#### Desenvolvendo a função Main
-
-Vamos mudar o código da função Main. Para ir até ela, você pode utilizar o Explorer, abrir o arquivo ```Program.cs``` ou no seu teste, clicar na palavra ```Main``` em ```Sanduiche.Program.Main(null)``` e teclar **F12**
-
-A função Main deve ficar assim:
-
-```c#
-        Console.WriteLine("Sanduíche pronto!");
-```
-
-Salve o arquivo teclando **CTRL+S** e veja que seus testes são executados novamente.
-
----
-
-#### Oxi! Falhou de novo
-
-Veja que mesmo com a alteração, seu teste falhou.
-
-```console
-  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
-  Error Message:
-   Assert.Contains() Failure:
-Expected: Sanduíche de Mortadela com Queijo está pronto!
-
-Actual:   Sanduíche pronto!
-```
-
-Lembre-se, em programação é necessário ser específico. A mensagem "Sanduíche pronto!" é diferente do que o que seu cliente pediu, que era, "Sanduíche de Mortadela com Queijo está pronto!"
-
-Mude novamente o código da função Main ajustando a mensagem e veja seu teste **passar com sucesso!**
-
----
-
-#### Agora sim!
-
-```console
-A total of 1 test files matched the specified pattern.
-
-Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
-```
-
-##### ⚠️ Faça um novo commit
-
-Mas espera um pouco, na verdade, só temos a mensagem que o sanduíche está pronto.
-
-OK, isso já garantimos. Agora vamos fazer as outras funções do nosso programa!
-
----
-
 
 #### Agora sim!
 
@@ -290,7 +52,7 @@ Vamos fazer o teste da função ```PegarFatiaDeQueijo```. A mensagem: "Peguei um
 [Fact]
     public void PegarFatiaDeQueijoTest()
     {
-        string expectedQueijo = "Peguei uma fatia de queijo.\n";
+        string expectedQueijo = "Peguei uma fatia de queijo.";
 
         string actualQueijo = Sanduiche.Program.PegarFatiaDeQueijo();
 
@@ -433,12 +195,10 @@ Como falamos, é possível transformar essas duas funções numa única, e atrav
 
 #### Funções com parâmetros
 
-Mude o nome do teste ```PegarFatiaDeMortadelaTest``` para ```PegarFatiaTest```
-
 Mude a chamada da função ```PegarFatiaDeMortadela``` para:
 
 ```c#
-string actualMortadela = Sanduiche.Program.PegarFatia("mortadela");
+string actual = Sanduiche.Program.PegarFatia("mortadela");
 ```
 
 Ou seja, ```"mortadela"``` é um parâmetro da função ```PegarFatia```
@@ -454,53 +214,23 @@ Ao salvar o arquivo, novamente nossos testes vão dizer:
 
 #### Funções com parâmetros
 
-Observe que agora o teste ```PegarFatiaTest``` espera que a mensagem ```Peguei uma fatia de mortadela.\n``` seja o retorno da função quando o parâmetro for ```"mortadela"```. Mas e quando for ```"queijo"```?
+Observe que agora o teste ```PegarFatiaDeMortadela``` espera que a mensagem ```Peguei uma fatia de mortadela.``` seja o retorno da função quando o parâmetro for ```"mortadela"```. Mas e quando for ```"queijo"```?
 
-Vamos precisar de mais uma variável ```expected```
-
-```c#
-        string expectedQueijo = "Peguei uma fatia de queijo.\n";
-```
-
-De mais uma chamada da função ```PegarFatia``` mudando o parâmetro para ```"queijo"```
-
-⚠️ Depois do ```Assert``` que faz o primeiro teste.
+Vamos mudar o teste ```PegarFatiaDeQueijoTest```.
 
 ```c#
-string actualQueijo = Sanduiche.Program.PegarFatia("queijo");
+string actual = Sanduiche.Program.PegarFatia("queijo");
 ```
 
 ---
 
 #### Funções com parâmetros
 
-E por fim, mais um ```Assert``` mas agora para a variável ```expectedQueijo``` que acabamos de criar.
+Use novamente o ***Quick Fix*** (```CTRL+.```), para criar a função ```PegarFatia```.
 
-```c#
-            Assert.Equal(expectedQueijo, actualQueijo);
-```
+Mude o nome do parâmetro para: ```string ingrediente```.
 
-Ao salvar o arquivo, novamente nossos testes vão dizer:
-
-```console
-'Program' does not contain a definition for 'PegarFatia'
-```
-
----
-
-#### Funções com parâmetros
-
-Vamos mudar a função ```PegarFatiaDeMortadela``` do arquivo **Program.cs**.
-
-Mude o nome para ```PegarFatia```
-
-Agora, para que essa função aceite parâmetros, vamos criar uma variável nela.
-
-```c#
-    public static string PegarFatia(string ingrediente)
-```
-
-Ou seja, ```string ingrediente"``` indicam que a função aceita um parâmetro e seu tipo é ```string```, que significa, texto.
+Ou seja, ```string ingrediente"``` indicam que a função aceita um parâmetro e seu tipo é ```string```, que significa, texto e que seu nome é ingrediente.
 
 ---
 

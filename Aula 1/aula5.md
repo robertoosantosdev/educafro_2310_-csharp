@@ -97,7 +97,7 @@ O ```for``` executa um trecho de código, quantas vezes forem necessárias.
 ``` c#
     for (int i = 0; i < quantidade; i++)
         {
-            return string.Format("Peguei uma fatia de {0}.\n", ingrediente);
+            return string.Format("Peguei uma fatia de {0}.", ingrediente);
         }
 ```
 
@@ -110,7 +110,7 @@ Agora vamos substituir o ```return``` por ```fatias = fatias + ``` e, ao final, 
 ```csharp
         for (int i = 0; i < quantidade; i++)
         {
-            fatias = fatias + string.Format("Peguei uma fatia de {0}.\n", ingrediente.Nome);
+            fatias = fatias + string.Format("Peguei uma fatia de {0}.", ingrediente.Nome);
         }
 
         return fatias;
@@ -131,7 +131,7 @@ Isso indica que nos testes, não estamos informando o valor do parâmetro quanti
 
 Vamos no arquivo ```ProgramTest.cs``` no nosso projeto de testes.
 
-Primeiro ponto, agora não esperamos mais que a saída da função seja apenas ```"Peguei uma fatia de queijo.\n"``` mas que essa mensagem seja exibida 2 vezes. Ou seja:
+Primeiro ponto, agora não esperamos mais que a saída da função seja apenas ```"Peguei uma fatia de queijo."``` mas que essa mensagem seja exibida 2 vezes. Ou seja:
 
 ```csharp
         string expectedQueijo = "Peguei uma fatia de queijo.\nPeguei uma fatia de queijo.\n";
