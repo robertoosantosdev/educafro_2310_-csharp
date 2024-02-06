@@ -52,11 +52,11 @@ Vamos fazer o teste da função ```PegarFatiaDeQueijo```. A mensagem: "Peguei um
 [Fact]
     public void PegarFatiaDeQueijoTest()
     {
-        string expectedQueijo = "Peguei uma fatia de queijo.";
+        string expected = "Peguei uma fatia de queijo.";
 
-        string actualQueijo = Sanduiche.Program.PegarFatiaDeQueijo();
+        string actual = Sanduiche.Program.PegarFatiaDeQueijo();
 
-        Assert.Equal(expectedQueijo, actualQueijo);
+        Assert.Equal(expected, actual);
     }
 ```
 
