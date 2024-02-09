@@ -73,7 +73,7 @@ Então, ao invés de fazer todas as nossas funções na classe ```Program```, va
 
 Para criar uma classe basta criar um arquivo com o nome da classe e que termine com ```.cs```.
 
-Então, no projeto ```Sanduiche```, crie um arquivo ```Sanduiche.cs```.
+Então, no projeto ```Sanduiche```, crie um arquivo ```Robo.cs```.
 
 ---
 
@@ -149,7 +149,7 @@ Existem diferentes tipos de visibilidade. Para saber mais, acesse: https://learn
 Mas e o objeto para a classe ```Robo```? Nos nossos testes não criamos um objeto antes de chamar o método ```PegarFatia```. Isso é por que o método ```PegarFatia``` tem um pequeno detalhe:
 
 ```csharp
-public static void PegarFatia
+public static string PegarFatia
 ```
 
 ---
