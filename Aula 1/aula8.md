@@ -90,7 +90,7 @@ Mas vamos para mais alguns detalhes.
 
 As informações que o sistema deve armazenar são:
 
-1. Funcionários: Nome completo, email, cargo, salário e se ele é um funcionário ativo ou não.
+1. Funcionários: Nome completo, cargo, salário e se ele é um funcionário ativo ou não.
 2. Gerentes: Deve ter as mesmas informações dos funcionário.
 3. Avaliações: Funcionário avaliado, gerente avaliador, data da avaliação, nota (1 a 10) e comentário do avaliador
 4. Cargo: Nome e Nível (onde nível 1 = Funcionário e 2 = Gerente)

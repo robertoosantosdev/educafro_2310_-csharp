@@ -338,7 +338,6 @@ public class GerenteTest : FuncionarioTest
         maria.Nome = "Maria Antunes";
         maria.Salario = 2000;
         maria.Cargo = cargoGerente;
-        maria.Email = "m@a.com.br";
         // Adicionamos ao banco criado na classe mãe
         _db.Funcionarios.Add(maria);
         // Salvamos
