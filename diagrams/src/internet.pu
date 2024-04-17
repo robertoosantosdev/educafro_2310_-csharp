@@ -5,7 +5,7 @@ Internet -> Servidor: Consulta
 
 participant "abantu" as prj #LimeGreen
 Servidor -> prj: Executa
-prj -> Servidor: View Index
+prj -> Servidor: View Create
 Servidor -> Internet: Site
 Internet -> usr
 usr -> Internet: POST http://abantu.com/Cargos/Create
