@@ -279,7 +279,8 @@ E veja os arquivos marcados com **U**
 
 #### Criando uma Console Application
 
-De volta ao terminal, vamos usar o ```dotnet new console -o Sanduiche --use-program-main``` uma das opções mais simples de projeto em .Net com a linguagem C#.
+De volta ao terminal, vamos usar o:
+ ```dotnet new console -o Sanduiche --use-program-main```
 
 ```dotnet``` é a tecnologia que estamos usando. Ou seja, .Net.
 ```new``` quer dizer novo. Pois estamos criando algo novo no repositório.

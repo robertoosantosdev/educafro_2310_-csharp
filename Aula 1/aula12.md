@@ -112,10 +112,10 @@ Nesse caso:
 
 ```csharp
 // Variável compartilhada com filhas para armazenar o nosso contexto de banco de dados
-protected IdentityDbContext _db;
+protected ApplicationDbContext _db;
 
 // Construtor recebendo o contexto como parâmetro
-public Funcionario(IdentityDbContext db) {
+public Funcionario(ApplicationDbContext db) {
     _db = db;
 }
 ```
@@ -215,14 +215,12 @@ Quando vamos fazer testes de funções com banco de dados, alguns pontos são im
         juarez.Nome = "Juarez Soares";
         juarez.Salario = 1000;
         juarez.Cargo = cargoVendedor;
-        juarez.Email = "a@a.com.br";
         // Criamos um funcionário INATIVO fictício
         var inativo = new Funcionario(_db);
         inativo.Nome = "Jorge Matos";
         inativo.Salario = 900;
         inativo.Ativo = false;
         inativo.Cargo = cargoVendedor;
-        inativo.Email = "j@m.com.br";
         // Adicionamos o funcionário ao banco de dados
         _db.Funcionarios.Add(juarez);
         _db.Funcionarios.Add(inativo);
@@ -340,7 +338,6 @@ public class GerenteTest : FuncionarioTest
         maria.Nome = "Maria Antunes";
         maria.Salario = 2000;
         maria.Cargo = cargoGerente;
-        maria.Email = "m@a.com.br";
         // Adicionamos ao banco criado na classe mãe
         _db.Funcionarios.Add(maria);
         // Salvamos

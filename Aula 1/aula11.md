@@ -117,44 +117,10 @@ Estamos usando o EF no formato ***Code-First***. Ou seja, primeiro estamos const
 Primeiramente instale a ferramenta, executando o comando abaixo no terminal:
 
 ```
-dotnet tool install --global dotnet-ef
+dotnet tool install --global dotnet-ef --version 6.0.27
 ```
 
-Se você receber o erro abaixo:
-
-<font size="5">
-
-```
-You must install or update .NET to run this application.
-
-App: /home/vscode/.dotnet/tools/dotnet-ef
-Architecture: x64
-Framework: 'Microsoft.NETCore.App', version '8.0.1' (x64)
-.NET location: /usr/share/dotnet
-
-The following frameworks were found:
-  8.0.0 at [/usr/share/dotnet/shared/Microsoft.NETCore.App]
-```
-
-</font>
-
----
-
-#### Entity Framework
-
-Desinstale a ferramenta
-
-```
-dotnet tool uninstall --global dotnet-ef
-```
-
-E execute novamente com a mesma versão que aparece na última linha. Nesse exemplo: 8.0.0
-
-```
-dotnet tool install --global dotnet-ef --version 8.0.0
-```
-
-Agora vamos criar uma ***migration**. Que basicamente são as instruções de atualização do banco de dados.
+Agora vamos criar uma ***migration***. Que basicamente são as instruções de atualização do banco de dados.
 
 ```
 dotnet ef migrations add VersaoInicial
