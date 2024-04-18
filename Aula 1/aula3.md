@@ -279,7 +279,8 @@ E veja os arquivos marcados com **U**
 
 #### Criando uma Console Application
 
-De volta ao terminal, vamos usar o ```dotnet new console -o Sanduiche --use-program-main``` uma das opções mais simples de projeto em .Net com a linguagem C#.
+De volta ao terminal, vamos usar o:
+ ```dotnet new console -o Sanduiche --use-program-main```
 
 ```dotnet``` é a tecnologia que estamos usando. Ou seja, .Net.
 ```new``` quer dizer novo. Pois estamos criando algo novo no repositório.
@@ -494,11 +495,11 @@ dotnet add ./Sanduiche.Test/Sanduiche.Test.csproj reference ./Sanduiche/Sanduich
 ---
 
 
-#### Atenção
+#### ⚠️ Atenção ⚠️
 
 Antes de continuar, confirme que na barra inferior do Visual Studio Code, aparece a informação: "Projects: 2".
 
-![Barra de status informando que existem dois projetos nesse repositório](image.png)
+![Barra de status informando que existem dois projetos nesse repositório](../assets/images/imagem_projetos_carregados.png)
 
 Se não estiver, vai ser necessário fechar e abrir o Visual Studio Code.
 
@@ -540,4 +541,131 @@ Aqui é importante entender que:
 
 ---
 
+#### Executando um teste
 
+##### ⚠️ Faça um novo commit
+Você pode usar o comentário "Versão inicial dos testes"
+
+Para executar um teste, execute o comando ```dotnet test```
+
+O resultado deve ser parecido com:
+
+```console
+[xUnit.net 00:00:00.68]     Sanduiche.Test.ProgramTest.MainTest [FAIL]
+  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
+  Error Message:
+   Assert.Contains() Failure:
+Expected: Sanduíche de Mortadela com Queijo está pronto!
+
+Actual:   Hello, World!
+
+  Stack Trace:
+     at Sanduiche.Test.ProgramTest.MainTest() in /workspaces/aula-sanduiche-educafro-csharp/Sanduiche.Test/ProgramTest.cs:line 28
+   at System.RuntimeMethodHandle.InvokeMethod(Object target, Void** arguments, Signature sig, Boolean isConstructor)
+   at System.Reflection.MethodInvoker.Invoke(Object obj, IntPtr* args, BindingFlags invokeAttr)
+
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
+```
+
+---
+
+#### Executando um teste
+
+Ao final, temos o resumo. Nosso teste falhou (*Failed*). 1 teste falhou, 0 tiveram sucesso e 0 foram ignorados. Nosso total de testes é 1.
+
+```console
+Failed!  - Failed:     1, Passed:     0, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
+```
+
+Um pouco mais pra cima temos a explicação da falha.
+
+```console
+  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
+  Error Message:
+   Assert.Contains() Failure:
+Expected: Sanduíche de Mortadela com Queijo está pronto!
+
+Actual:   Hello, World!
+```
+
+---
+
+#### Executando um teste
+
+Imagine que seu chefe, ou cliente pediu para que, quando o sanduíche estivesse pronto, fosse exibida a mensagem (*Expected*) "Sanduíche de Mortadela com Queijo está pronto!", você fez o teste para garantir esse resultado, mas nesse caso, foi exibida a mensagem (*Actual*) "Hello, World!".
+
+Apesar do teste ter falhado, isso foi bom. Garantimos que não vamos entregar um programa que faz o que não deveria!
+
+
+---
+
+#### Desenvolvendo a função Main
+
+Vamos corrigir isso!
+
+Para que os testes continuem sempre rodando e te ajudando a verificar se você está desenvolvendo corretamente, utilize os seguintes comandos no terminal:
+
+```
+cd Sanduiche.Test/
+dotnet watch test
+```
+
+O ```dotnet watch``` fica monitorando nossos arquivos e sempre que tem uma alteração, ele executa o comando seguinte. No nosso caso, ```test```.
+
+
+---
+
+
+#### Desenvolvendo a função Main
+
+Vamos mudar o código da função Main. Para ir até ela, você pode utilizar o Explorer, abrir o arquivo ```Program.cs``` ou no seu teste, clicar na palavra ```Main``` em ```Sanduiche.Program.Main(null)``` e teclar **F12**
+
+A função Main deve ficar assim:
+
+```c#
+        Console.WriteLine("Sanduíche pronto!");
+```
+
+Salve o arquivo teclando **CTRL+S** e veja que seus testes são executados novamente.
+
+---
+
+#### Oxi! Falhou de novo
+
+Veja que mesmo com a alteração, seu teste falhou.
+
+```console
+  Failed Sanduiche.Test.ProgramTest.MainTest [3 ms]
+  Error Message:
+   Assert.Contains() Failure:
+Expected: Sanduíche de Mortadela com Queijo está pronto!
+
+Actual:   Sanduíche pronto!
+```
+
+Lembre-se, em programação é necessário ser específico. A mensagem "Sanduíche pronto!" é diferente do que o que seu cliente pediu, que era, "Sanduíche de Mortadela com Queijo está pronto!"
+
+Mude novamente o código da função Main ajustando a mensagem e veja seu teste **passar com sucesso!**
+
+---
+
+#### Agora sim!
+
+```console
+A total of 1 test files matched the specified pattern.
+
+Passed!  - Failed:     0, Passed:     1, Skipped:     0, Total:     1, Duration: < 1 ms - Sanduiche.Test.dll (net7.0)
+```
+
+##### ⚠️ Faça um novo commit
+
+Mas espera um pouco, na verdade, só temos a mensagem que o sanduíche está pronto.
+
+OK, isso já garantimos. Agora vamos fazer as outras funções do nosso programa!
+
+---
+
+<style scoped>section { justify-content: center; }</style>
+
+# Muito obrigado
+## E nos vemos na próxima aula! 👋

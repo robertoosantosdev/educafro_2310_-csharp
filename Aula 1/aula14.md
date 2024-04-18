@@ -60,12 +60,12 @@ Ela deve ter ficado assim:
 ```csharp
 public Funcionario AumentarSalario(Funcionario funcionario, decimal novoSalario)
 {
-    if (funcionario.Avaliacoes == null || funcionario.Avaliacoes.Count == 0)
-            throw new ApplicationException("Funcionário não possui avaliações. É necessário uma média superior a 7 para realizar um aumento");
-
     var mediaMinima = 7;
 
     var funcionarioDb = _db.Funcionarios.Single(f => f.Id == funcionario.Id);
+
+    if (funcionarioDb.Avaliacoes == null || funcionarioDb.Avaliacoes.Count == 0)
+        throw new ApplicationException("Funcionário não possui avaliações. É necessário uma média superior a 7 para realizar um aumento");
 
     if (CalcularMediaAvaliacoes(funcionarioDb.Avaliacoes) > mediaMinima)
     {
@@ -216,7 +216,7 @@ cd ../abantu.mvc/
 Depois:
 
 ```
-dotnet tool install -g dotnet-aspnet-codegenerator
+dotnet tool install -g dotnet-aspnet-codegenerator --version 6.0.16
 ```
 
 ---
@@ -226,11 +226,11 @@ dotnet tool install -g dotnet-aspnet-codegenerator
 Precisamos também instalar essa biblioteca no projeto:
 
 ```
-dotnet add package Microsoft.EntityFrameworkCore.Design
-dotnet add package Microsoft.EntityFrameworkCore.SQLite
-dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design
-dotnet add package Microsoft.EntityFrameworkCore.SqlServer
-dotnet add package Microsoft.EntityFrameworkCore.Tools
+dotnet add package Microsoft.EntityFrameworkCore.Design --version 6.0.29
+dotnet add package Microsoft.EntityFrameworkCore.SQLite --version 6.0.29
+dotnet add package Microsoft.VisualStudio.Web.CodeGeneration.Design --version 6.0.16
+dotnet add package Microsoft.EntityFrameworkCore.SqlServer --version 6.0.29
+dotnet add package Microsoft.EntityFrameworkCore.Tools --version 6.0.29
 ```
 
 ---

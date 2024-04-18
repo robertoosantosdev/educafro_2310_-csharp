@@ -160,7 +160,7 @@ Agora vamos instalar o .Net SDK*
 
 > \* SDK significa *Software Development Kit*, ou seja, kit para desenvolvimento de software. Esse é um conceito que existe para diversas tecnologias.
 
-Link: https://dotnet.microsoft.com/pt-br/download
+Link: https://dotnet.microsoft.com/en-us/download/dotnet/6.0
 
 ---
 

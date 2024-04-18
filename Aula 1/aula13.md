@@ -93,7 +93,6 @@ public void ContratarTest() {
     novoFuncionario.Nome = "Roberto Lira";
     novoFuncionario.Cargo = cargoVendedor;
     novoFuncionario.Salario = 1000;
-    novoFuncionario.Email = "r@l.com.br";
 
     gerente.Contratar(novoFuncionario);
 
@@ -124,6 +123,8 @@ Para calcular a média simples de algo, devemos:
 
 Para separar as responsabilidades, podemos fazer uma função para calcular média:
 
+<font size=5>
+
 ```csharp
 private decimal CalcularMediaAvaliacoes(List<Avaliacao> avaliacoes)
 {
@@ -141,9 +142,13 @@ private decimal CalcularMediaAvaliacoes(List<Avaliacao> avaliacoes)
         total += avaliacoes[i].Nota;
     }
 
-    return total / quantidade;
+    media = total / quantidade; 
+
+    return media;
 }
 ```
+
+</font>
 
 ---
 

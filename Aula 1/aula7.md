@@ -244,10 +244,10 @@ Seus testes devem ficar parecidos com:
     {
         string expected = "mortadela quente";
 
-        Ingredente queijo = new Ingredente();
-        queijo.Nome = "mortadela";
+        Ingredente mortadela = new Ingredente();
+        mortadela.Nome = "mortadela";
 
-        string actual = queijo.Preparar();
+        string actual = mortadela.Preparar();
 
         Assert.Equal(expected, actual);
     }
