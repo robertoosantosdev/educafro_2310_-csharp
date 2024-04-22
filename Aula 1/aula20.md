@@ -60,9 +60,9 @@ https://techguide.sh/pt-BR/path/csharp/
 
 #### Evoluindo este projeto
 
-Atualmente o projeto está funcional mas ainda faltam alguns recursos interessantes.
+Minha versão final desse projeto está disponível em: https://github.com/robertoosantos/abantu/tree/realease.1.0
 
-Tente:
+Atualmente o projeto está funcional mas ainda faltam alguns recursos interessantes. Tente:
 
 1. Criar a função ```Promover``` para criar novos ```gerentes``` além do usuário administrador.
 2. Criar o conceito de ```Departamentos```. Uma empresa tem vários departamentos, cada departamento tem um gerente e vários funcionários.
